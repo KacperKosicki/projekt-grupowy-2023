@@ -1,13 +1,22 @@
 $base-padding: 24px;
 
-$header-topbar-bg: #434343;
-$header-bg: #363636;
+//colors
+// DO NOT USE THESE VARIABLES, USE "ELEMENT COLORS" IN COMPONENTS STYLES
+$gray-1: #434343;
+$gray-2: #363636;
+$gray-3: #2a2a2a;
+$gray-4: #292929;
+$yellow: #d58e32;
 
-$footer-claim-bg: #2a2a2a;
-$footer-bg: #363636;
+//element colors
+$header-topbar-bg: $gray-1;
+$header-bg: $gray-2;
 
-$primary: #d58e32;
+$footer-claim-bg: $gray-3;
+$footer-bg: $gray-2;
 
-$text-color: #2a2a2a;
+$primary: $yellow;
 
-$form-border-color: #292929;
+$text-color: $gray-3;
+
+$form-border-color: $gray-4;
