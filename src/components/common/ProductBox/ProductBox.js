@@ -13,9 +13,14 @@ import Button from '../Button/Button';
 import { toggleProductFavorite } from '../../../redux/productsRedux';
 import Stars from '../Stars/Stars';
 
+<<<<<<< HEAD
 const ProductBox = ({ name, price, promo, isFavorite, id, stars, userStars, img, isFeatured, comparison }) => {
   const rootClassName = isFeatured ? styles.featuredRoot : styles.root;
 
+=======
+
+const ProductBox = ({ name, price, promo, stars, userStars, isFavorite, id, img, comparison, oldPrice }) => {
+>>>>>>> a89be12 (add old prices to product box)
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
@@ -81,10 +86,13 @@ const ProductBox = ({ name, price, promo, isFavorite, id, stars, userStars, img,
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
-        <div className={styles.price}>
-          <Button noHover variant='small'>
-            $ {price}
-          </Button>
+        <div className={styles.prices}>
+          {oldPrice && <div className={styles.oldPrice}>$ {oldPrice}</div>}
+          <div className={styles.price}>
+            <Button noHover variant='small'>
+              $ {price}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -103,7 +111,11 @@ ProductBox.propTypes = {
   comparison: PropTypes.bool,
   isFavorite: PropTypes.bool,
   userStars: PropTypes.number,
+<<<<<<< HEAD
   isFeatured: PropTypes.bool,
+=======
+  oldPrice: PropTypes.number,
+>>>>>>> a89be12 (add old prices to product box)
 };
 
 export default ProductBox;

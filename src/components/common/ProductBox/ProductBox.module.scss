@@ -15,12 +15,14 @@
 
   .photo {
     position: relative;
+    padding: 80% 10px 0 10px;
     background: {
       color: #f4f5f7;
       size: contain;
       position: center;
       repeat: no-repeat;
     }
+
     overflow: hidden;
     align-items: flex-end;
 
@@ -91,6 +93,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .prices {
+      align-items: center;
+      display: flex;
+    }
+
+    .oldPrice {
+      font-size: 13px;
+      text-decoration: line-through;
+      color: #A5A5A5;
+      margin-right: 5px;
+    }
   }
 
   .icon_selected {
