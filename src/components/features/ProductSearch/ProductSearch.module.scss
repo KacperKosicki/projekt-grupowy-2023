@@ -30,16 +30,51 @@
       right: 10px;
       z-index: 0;
     }
+    
+// change in select category
 
-    select {
-      -webkit-appearance: none;
-      border: 0;
-      background-color: transparent;
-      padding: 5px 30px 5px 35px;
+    .customSelect {
       position: relative;
-      z-index: 1;
-      font-size: 14px;
-      outline: none;
+      
+      span.selectCategory {
+        height: 42px;
+        width: 200px;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+        justify-content: center;        
+        cursor: pointer;
+      }
+
+      ul {
+        width: 200px;
+        font-size: 14px;
+        text-align: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        border: 1px solid $form-border-color;
+        background-color:$beige;
+        z-index: 2;
+        display: none;
+
+        li {
+          margin: 10px 0;
+          padding: 10px 15px;          
+
+          &:hover {
+            background-color: $primary;
+            cursor: pointer;
+          }
+        }
+      }
+
+      &:hover ul {
+        display: block;
+      }
     }
   }
 
