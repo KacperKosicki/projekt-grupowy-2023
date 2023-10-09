@@ -1,10 +1,10 @@
-import styles from './Promo.module.scss';
+import styles from './Sales.module.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getAll } from '../../../redux/productsRedux';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 
-const Promo = () => {
+const Sales = () => {
   const products = useSelector(state => getAll(state));
 
   const promoProduct1 = products[2];
@@ -77,7 +77,7 @@ const Promo = () => {
   );
 };
 
-Promo.propTypes = {
+Sales.propTypes = {
   products: PropTypes.array.isRequired,
   promoProduct1: PropTypes.object.isRequired,
   promoProduct2: PropTypes.object.isRequired,
@@ -85,4 +85,4 @@ Promo.propTypes = {
   promoProduct4: PropTypes.object.isRequired,
 };
 
-export default Promo;
+export default Sales;
