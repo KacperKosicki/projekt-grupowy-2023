@@ -27,11 +27,6 @@ const ProductBox = ({
 }) => {
   const rootClassName = isFeatured ? styles.featuredRoot : styles.root;
 
-<<<<<<< HEAD
-=======
-const ProductBox = ({ name, price, promo, stars, img, isFavorite, comparison, id }) => {
-  console.log({ comparison });
->>>>>>> 478fbcd (resolving conflicts in ProductBox)
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
