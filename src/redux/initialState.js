@@ -51,8 +51,9 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
-      img: '/images/furniture/sofa-1.jpg',favourite: true,
-      comparison: true,
+      img: '/images/furniture/sofa-1.jpg',
+      favourite: true,
+      comparison: false,
     },
     {
       id: 'aenean-ru-bristique-5',
