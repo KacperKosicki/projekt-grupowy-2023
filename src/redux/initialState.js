@@ -16,8 +16,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-1.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-2',
@@ -28,8 +28,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-2.jpg',
-      favourite: true,
       comparison: false,
+      isFavorite: true,
     },
     {
       id: 'aenean-ru-bristique-3',
@@ -40,8 +40,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-2.jpg',
-      favourite: false,
       comparison: true,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-4',
@@ -51,8 +51,9 @@ const initialState = {
       stars: 2,
       promo: 'sale',
       newFurniture: true,
-      img: '/images/furniture/sofa-1.jpg',favourite: true,
+      img: '/images/furniture/sofa-1.jpg',
       comparison: true,
+      isFavorite: true,
     },
     {
       id: 'aenean-ru-bristique-5',
@@ -63,8 +64,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-3.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-6',
@@ -75,8 +76,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-4.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-7',
@@ -87,8 +88,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-4.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-8',
@@ -99,8 +100,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-3.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-9',
@@ -111,8 +112,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-1.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-10',
@@ -123,8 +124,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-2.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-11',
@@ -135,8 +136,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-3.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-12',
@@ -147,8 +148,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-4.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-13',
@@ -159,8 +160,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-1.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-14',
@@ -171,8 +172,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-2.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-15',
@@ -183,8 +184,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-3.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-16',
@@ -195,8 +196,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-4.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-17',
@@ -207,8 +208,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-1.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-18',
@@ -219,8 +220,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-2.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-19',
@@ -231,8 +232,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-3.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-20',
@@ -243,8 +244,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-4.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-21',
@@ -255,8 +256,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-1.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-22',
@@ -267,8 +268,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-2.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-23',
@@ -279,8 +280,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-3.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
     {
       id: 'aenean-ru-bristique-24',
@@ -291,8 +292,8 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-4.jpg',
-      favourite: false,
       comparison: false,
+      isFavorite: false,
     },
   ],
   cart: {
