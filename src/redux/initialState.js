@@ -299,6 +299,7 @@ const initialState = {
   cart: {
     products: [],
   },
+  screenMode: '',
 };
 
 export default initialState;

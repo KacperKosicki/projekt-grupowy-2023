@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
@@ -40,8 +41,20 @@ class NewFurniture extends React.Component {
     this.setState({ activeCategory: newCategory });
   }
 
+  productDisplay(screenMode) {
+    let number = 8;
+    if (screenMode === 'desktop') {
+      number = 8;
+    } else if (screenMode === 'tablet') {
+      number = 3;
+    } else if (screenMode === 'mobile') {
+      number = 2;
+    }
+    return number;
+  }
+
   render() {
-    const { categories } = this.props;
+    const { categories, screenMode } = this.props;
     const { activeCategory, activePage } = this.state;
 
     const dots = [];
@@ -88,7 +101,7 @@ class NewFurniture extends React.Component {
           <Swipeable leftAction={this.swipeLeft} rightAction={this.swipeRight}>
             <div className='row'>
               {this.state.categoryProducts
-                .slice(activePage * 8, (activePage + 1) * 8)
+                .slice(activePage * 8, (activePage + 1) * this.productDisplay(screenMode))
                 .map(item => (
                   <div key={item.id} className='col-sm-6 col-md-4 col-lg-3'>
                     <ProductBox {...item} />
@@ -121,11 +134,21 @@ NewFurniture.propTypes = {
       newFurniture: PropTypes.bool,
     })
   ),
+  screenMode: PropTypes.string,
 };
 
 NewFurniture.defaultProps = {
   categories: [],
   products: [],
+  screenMode: '',
 };
 
-export default NewFurniture;
+const mapStateToProps = state => {
+  return {
+    screenMode: state.screenMode,
+  };
+};
+
+export default connect(mapStateToProps)(NewFurniture);
+
+//export default NewFurniture;
