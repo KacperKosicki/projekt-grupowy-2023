@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
+import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
-import { toggleProductFavorite } from '../../../redux/productsRedux';
+import {
+  toggleProductFavorite,
+  toggleToCompare,
+  getComparedProducts,
+} from '../../../redux/productsRedux';
+import CompareStickyBar from '../../layout/CompareStickyBar/CompareStickyBar';
 import Stars from '../Stars/Stars';
 
 const ProductBox = ({
@@ -30,6 +36,16 @@ const ProductBox = ({
   const toggleFavorite = e => {
     e.preventDefault();
     dispatch(toggleProductFavorite(id));
+  };
+
+  const comparedProducts = useSelector(getComparedProducts);
+
+  const handleToggleToCompare = e => {
+    e.preventDefault();
+
+    if (comparedProducts.length < 4 || comparison === true) {
+      dispatch(toggleToCompare(id));
+    }
   };
 
   return (
@@ -86,19 +102,18 @@ const ProductBox = ({
           <Button
             variant='outline'
             className={clsx(comparison && styles.icon_selected)}
+            onClick={handleToggleToCompare}
           >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
-        <div className={styles.prices}>
-          {oldPrice && <div className={styles.oldPrice}>$ {oldPrice}</div>}
-          <div className={styles.price}>
-            <Button noHover variant='small'>
-              $ {price}
-            </Button>
-          </div>
+        <div className={styles.price}>
+          <Button noHover variant='small'>
+            $ {price}
+          </Button>
         </div>
       </div>
+      <CompareStickyBar />
     </div>
   );
 };
