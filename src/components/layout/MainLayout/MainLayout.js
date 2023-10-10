@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CompareStickyBar from '../CompareStickyBar/CompareStickyBar';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import CompareStickyBar from '../CompareStickyBar/CompareStickyBar';
