@@ -41,3 +41,15 @@
     color: #ffffff;
   }
 }
+
+.white {
+  background-color: #ffffff;
+  color: #2a2a2a;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 14px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

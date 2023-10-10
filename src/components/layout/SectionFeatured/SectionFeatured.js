@@ -15,7 +15,7 @@ const SectionFeatured = () => {
     <div className={styles.root}>
       <div className='container'>
         <div className={styles.featured}>
-          <div className='col-4'>
+          <div className={styles.featuredCard}>
             <div className={styles.deals}>
               <p>HOT DEALS</p>
               <div className={styles.dots}>
@@ -35,11 +35,19 @@ const SectionFeatured = () => {
             <ProductBox {...exampleProduct} isFeatured={isFeatured} />
           </div>
           <div className={styles.featuredProduct}>
-            <h2>
-              INDOOR <span>FURNITURE</span>
-            </h2>
-            <p>SAVE UP TO 50% OF ALL FURNITURE</p>
-            <Button>SHOP NOW</Button>
+            <div className={styles.featuredProduct_inner}>
+              <p>
+                INDOOR <span>FURNITURE</span>
+              </p>
+              <p>SAVE UP TO 50% OF ALL FURNITURE</p>
+              <Button variant='white' className={styles.button}>
+                SHOP NOW
+              </Button>
+            </div>
+            <div className={styles.featuredProduct_buttons}>
+              <Button>{'<'}</Button>
+              <Button></Button>
+            </div>
           </div>
         </div>
       </div>
