@@ -16,6 +16,7 @@ import {
   toggleToCompare,
   getComparedProducts,
 } from '../../../redux/productsRedux';
+import CompareStickyBar from '../../layout/CompareStickyBar/CompareStickyBar';
 
 const ProductBox = ({ name, price, promo, stars, img, isFavorite, comparison, id }) => {
   const dispatch = useDispatch();
@@ -86,6 +87,7 @@ const ProductBox = ({ name, price, promo, stars, img, isFavorite, comparison, id
           </Button>
         </div>
       </div>
+      <CompareStickyBar />
     </div>
   );
 };
