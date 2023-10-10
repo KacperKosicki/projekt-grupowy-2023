@@ -294,7 +294,6 @@ const initialState = {
       img: '/images/furniture/bed-5.png',
       comparison: false,
       isFavorite: false,
-
     },
     {
       id: 'aenean-ru-bristique-25',
