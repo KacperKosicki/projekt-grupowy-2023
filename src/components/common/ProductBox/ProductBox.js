@@ -8,11 +8,7 @@ import { faStar, faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid
 import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
-import {
-  toggleProductFavorite,
-  toggleToCompare,
-  getComparedProducts,
-} from '../../../redux/productsRedux';
+import { toggleProductFavorite, toggleToCompare, getComparedProducts } from '../../../redux/productsRedux';
 import CompareStickyBar from '../../layout/CompareStickyBar/CompareStickyBar';
 import Stars from '../Stars/Stars';
 
@@ -31,6 +27,11 @@ const ProductBox = ({
 }) => {
   const rootClassName = isFeatured ? styles.featuredRoot : styles.root;
 
+<<<<<<< HEAD
+=======
+const ProductBox = ({ name, price, promo, stars, img, isFavorite, comparison, id }) => {
+  console.log({ comparison });
+>>>>>>> 478fbcd (resolving conflicts in ProductBox)
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
