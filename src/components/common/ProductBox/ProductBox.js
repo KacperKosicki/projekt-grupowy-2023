@@ -11,11 +11,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
-import { toggleProductFavorite, toggleToCompare, getComparedProducts } from '../../../redux/productsRedux';
+import {
+  toggleProductFavorite,
+  toggleToCompare,
+  getComparedProducts,
+} from '../../../redux/productsRedux';
 import CompareStickyBar from '../../layout/CompareStickyBar/CompareStickyBar';
 
 const ProductBox = ({ name, price, promo, stars, img, isFavorite, comparison, id }) => {
-  console.log({ comparison });
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
