@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,14 +11,28 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
-import { toggleProductFavorite } from '../../../redux/productsRedux';
+import {
+  toggleProductFavorite,
+  toggleToCompare,
+  getComparedProducts,
+} from '../../../redux/productsRedux';
 
-const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison }) => {
+const ProductBox = ({ name, price, promo, stars, img, isFavorite, comparison, id }) => {
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
     e.preventDefault();
     dispatch(toggleProductFavorite(id));
+  };
+
+  const comparedProducts = useSelector(getComparedProducts);
+
+  const handleToggleToCompare = e => {
+    e.preventDefault();
+
+    if (comparedProducts.length < 4 || comparison === true) {
+      dispatch(toggleToCompare(id));
+    }
   };
 
   return (
@@ -57,7 +71,12 @@ const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison
           >
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
-          <Button variant='outline' className={clsx(comparison && styles.icon_selected)}>
+
+          <Button
+            variant='outline'
+            className={clsx(comparison && styles.icon_selected)}
+            onClick={handleToggleToCompare}
+          >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
