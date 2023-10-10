@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,11 +12,11 @@ import {
 import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import { toggleProductFavorite } from '../../../redux/productsRedux';
-import { useDispatch, useSelector } from 'react-redux';
 import { toggleToCompare, getComparedProducts } from '../../../redux/productsRedux';
 import CompareStickyBar from '../../layout/CompareStickyBar/CompareStickyBar';
 
-const ProductBox = ({ name, price, promo, stars, img, isFavorite, id, comparison }) => {
+const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison }) => {
+
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
@@ -90,6 +90,7 @@ const ProductBox = ({ name, price, promo, stars, img, isFavorite, id, comparison
 };
 
 ProductBox.propTypes = {
+  id: PropTypes.string,
   children: PropTypes.node,
   name: PropTypes.string,
   price: PropTypes.number,
@@ -99,7 +100,6 @@ ProductBox.propTypes = {
   imgAlt: PropTypes.string,
   comparison: PropTypes.bool,
   isFavorite: PropTypes.bool,
-  id: PropTypes.string,
 };
 
 export default ProductBox;

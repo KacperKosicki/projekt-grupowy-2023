@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+
 import CompareStickyBar from '../CompareStickyBar/CompareStickyBar';
+
 import { getScreenMode } from '../../../redux/screenModeRedux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
