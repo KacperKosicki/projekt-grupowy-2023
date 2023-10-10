@@ -4,16 +4,23 @@ import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faStar,
-  faExchangeAlt,
-  faShoppingBasket,
-} from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faHeart } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import { toggleProductFavorite } from '../../../redux/productsRedux';
+import Stars from '../Stars/Stars';
 
-const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison }) => {
+const ProductBox = ({
+  name,
+  price,
+  promo,
+  stars,
+  userStars,
+  isFavorite,
+  id,
+  img,
+  comparison,
+}) => {
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
@@ -35,17 +42,7 @@ const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison
       </div>
       <div className={styles.content}>
         <h5>{name}</h5>
-        <div className={styles.stars}>
-          {[1, 2, 3, 4, 5].map(i => (
-            <a key={i} href='#'>
-              {i <= stars ? (
-                <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
-              ) : (
-                <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
-              )}
-            </a>
-          ))}
-        </div>
+        <Stars stars={stars} userStars={userStars} id={id} />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
@@ -57,7 +54,10 @@ const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison
           >
             <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
           </Button>
-          <Button variant='outline' className={clsx(comparison && styles.icon_selected)}>
+          <Button
+            variant='outline'
+            className={clsx(comparison && styles.icon_selected)}
+          >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
@@ -82,6 +82,7 @@ ProductBox.propTypes = {
   imgAlt: PropTypes.string,
   comparison: PropTypes.bool,
   isFavorite: PropTypes.bool,
+  userStars: PropTypes.number,
 };
 
 export default ProductBox;
