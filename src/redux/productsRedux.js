@@ -10,6 +10,8 @@ export const getComparedProducts = ({ products }) =>
 
 /* actions */
 const createActionName = actionName => `app/products/${actionName}`;
+
+/* action types */
 const TOGGLE_PRODUCT_FAVORITE = createActionName('TOGGLE_PRODUCT_FAVORITE');
 const TOGGLE_TO_COMPARE = createActionName('TOGGLE_TO_COMPARE');
 const UPDATE_PRODUCT_STARS = createActionName('UPDATE_PRODUCT_STARS');
