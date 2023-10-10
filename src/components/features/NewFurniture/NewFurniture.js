@@ -22,6 +22,18 @@ class NewFurniture extends React.Component {
     this.state.pagesCount = pagesCount;
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.products !== this.props.products) {
+      const categoryProducts = this.props.products.filter(
+        item => item.category === this.state.activeCategory
+      );
+
+      this.setState({
+        categoryProducts: categoryProducts,
+      });
+    }
+  }
+
   swipeLeft = () => {
     if (this.state.activePage === this.state.pagesCount - 1) return;
     this.handlePageChange(this.state.activePage + 1);
