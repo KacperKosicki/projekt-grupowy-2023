@@ -1,6 +1,5 @@
 import styles from './Sales.module.scss';
 import React from 'react';
-import PropTypes from 'prop-types';
 import { getAll } from '../../../redux/productsRedux';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 
