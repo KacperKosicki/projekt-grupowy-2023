@@ -45,8 +45,12 @@ const SectionFeatured = () => {
               </Button>
             </div>
             <div className={styles.featuredProduct_buttons}>
-              <Button>{'<'}</Button>
-              <Button></Button>
+              <Button variant='wide' className={styles.longButton}>
+                {'<'}
+              </Button>
+              <Button variant='wide' className={styles.longButton}>
+                {'>'}
+              </Button>
             </div>
           </div>
         </div>

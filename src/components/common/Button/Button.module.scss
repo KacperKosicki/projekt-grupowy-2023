@@ -53,3 +53,16 @@
     text-decoration: none;
   }
 }
+
+.wide {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  text-align: center;
+  padding: 7px 0;
+
+  &:hover {
+    background-color: $primary;
+    text-decoration: none;
+    color: #ffffff;
+  }
+}

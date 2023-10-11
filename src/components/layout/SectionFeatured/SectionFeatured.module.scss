@@ -69,6 +69,8 @@
       justify-content: center;
       background-image: url(/images/furniture/sofa-2.jpg);
       background-size: cover;
+      background-position: center;
+      position: relative;
 
       .featuredProduct_inner {
         background-color: rgba($header-bg, 0.8);
@@ -105,6 +107,14 @@
 
       .featuredProduct_buttons {
         display: flex;
+        position: absolute;
+        bottom: 0;
+        justify-content: space-between;
+        width: 100%;
+
+        .longButton {
+          width: 50%;
+        }
       }
     }
   }
