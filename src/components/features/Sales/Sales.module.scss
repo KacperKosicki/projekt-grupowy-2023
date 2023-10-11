@@ -158,3 +158,33 @@
     }
   }
 }
+
+/* MEDIA */
+@media screen and (max-width: 767px) {
+  .root {
+    .leftBox {
+      height: auto;
+    }
+
+    .upperRightBox,
+    .lowerRightBox {
+      height: auto;
+    }
+
+    .upperRightBox {
+      .imgPromoLeft,
+      .imgPromoRight {
+        width: 100%;
+        left: 0;
+        right: 0;
+      }
+    }
+
+    .lowerRightBox {
+      .imgPromoRightDown {
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}
