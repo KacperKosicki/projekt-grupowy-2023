@@ -5,6 +5,12 @@
   display: inline-flex;
   height: 45px;
   color: $text-color;
+  background: #ffffff;
+  z-index: 999;
+
+  .home {
+    display: none;
+  }
 
   .category {
     border-right: 1px solid $form-border-color;
@@ -13,7 +19,9 @@
     position: relative;
 
     &:hover {
-      select, .icon {
+
+      select,
+      .icon {
         color: $primary;
       }
     }
@@ -30,19 +38,19 @@
       right: 10px;
       z-index: 0;
     }
-    
-// change in select category
+
+    // change in select category
 
     .customSelect {
       position: relative;
-      
+
       span.selectCategory {
         height: 42px;
         width: 200px;
         display: flex;
         font-size: 14px;
         align-items: center;
-        justify-content: center;        
+        justify-content: center;
         cursor: pointer;
       }
 
@@ -57,13 +65,13 @@
         top: 100%;
         left: 0;
         border: 1px solid $form-border-color;
-        background-color:$beige;
+        background-color: $beige;
         z-index: 2;
         display: none;
 
         li {
           margin: 10px 0;
-          padding: 10px 15px;          
+          padding: 10px 15px;
 
           &:hover {
             background-color: $primary;

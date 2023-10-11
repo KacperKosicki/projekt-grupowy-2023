@@ -9,21 +9,13 @@
     height: 84px;
   }
 
+  .nav {
+    height: 84px;
+    z-index: 999;
+  }
+
   .menu {
-    display: flex;
-    align-self: stretch;
-
-    ul {
-      margin: 0;
-      padding: 0;
-      display: flex;
-
-      li {
-        list-style: none;
-        display: flex;
-        align-items: stretch;
-      }
-    }
+    z-index: 999;
 
     a {
       @extend %hover-transform-size;
@@ -50,4 +42,24 @@
       }
     }
   }
+}
+
+@media (max-width: 1199px) {
+  .root {
+    display:block;
+  .nav {
+    height: 39px;
+  }
+}
+}
+
+@media (max-width: 767px) {
+  .root {
+    :global(.container) > :global(.row) {
+      height: 50px;
+    }
+  .nav {
+    background: #ffffff;
+  }
+}
 }
