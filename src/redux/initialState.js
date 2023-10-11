@@ -321,6 +321,16 @@ const initialState = {
       isFavorite: false,
     },
   ],
+  brands: [
+    { id: 'brand-1', name: 'Brand-1', img: '/images/brands/brand-1.jpg' },
+    { id: 'brand-2', name: 'Brand-2', img: '/images/brands/brand-2.jpg' },
+    { id: 'brand-3', name: 'Brand-3', img: '/images/brands/brand-3.jpg' },
+    { id: 'brand-4', name: 'Brand-4', img: '/images/brands/brand-4.jpg' },
+    { id: 'brand-5', name: 'Brand-5', img: '/images/brands/brand-5.jpg' },
+    { id: 'brand-6', name: 'Brand-6', img: '/images/brands/brand-6.jpg' },
+    { id: 'brand-7', name: 'Brand-7', img: '/images/brands/brand-7.jpg' },
+    { id: 'brand-8', name: 'Brand-8', img: '/images/brands/brand-8.jpg' },
+  ],
   cart: {
     products: [],
   },
