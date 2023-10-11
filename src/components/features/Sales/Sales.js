@@ -77,12 +77,4 @@ const Sales = () => {
   );
 };
 
-Sales.propTypes = {
-  products: PropTypes.array.isRequired,
-  promoProduct1: PropTypes.object.isRequired,
-  promoProduct2: PropTypes.object.isRequired,
-  promoProduct3: PropTypes.object.isRequired,
-  promoProduct4: PropTypes.object.isRequired,
-};
-
 export default Sales;
