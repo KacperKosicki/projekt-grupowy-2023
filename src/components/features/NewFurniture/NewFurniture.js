@@ -23,6 +23,18 @@ class NewFurniture extends React.Component {
     this.state.pagesCount = pagesCount;
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.products !== this.props.products) {
+      const categoryProducts = this.props.products.filter(
+        item => item.category === this.state.activeCategory
+      );
+
+      this.setState({
+        categoryProducts: categoryProducts,
+      });
+    }
+  }
+
   swipeLeft = () => {
     if (this.state.activePage === this.state.pagesCount - 1) return;
     this.handlePageChange(this.state.activePage + 1);
@@ -101,7 +113,10 @@ class NewFurniture extends React.Component {
           <Swipeable leftAction={this.swipeLeft} rightAction={this.swipeRight}>
             <div className='row'>
               {this.state.categoryProducts
-                .slice(activePage * 8, (activePage + 1) * this.productDisplay(screenMode))
+                .slice(
+                  activePage * 8,
+                  (activePage + 1) * this.productDisplay(screenMode)
+                )
                 .map(item => (
                   <div key={item.id} className='col-sm-6 col-md-4 col-lg-3'>
                     <ProductBox {...item} />
