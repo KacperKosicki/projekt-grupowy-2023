@@ -25,6 +25,7 @@ const initialState = {
       category: 'bed',
       price: 30,
       stars: 2,
+      userStars: 3,
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-2.jpg',
@@ -97,6 +98,7 @@ const initialState = {
       category: 'bed',
       price: 30,
       stars: 2,
+      userStars: 1,
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-3.jpg',
@@ -294,7 +296,6 @@ const initialState = {
       img: '/images/furniture/bed-5.png',
       comparison: false,
       isFavorite: false,
-
     },
     {
       id: 'aenean-ru-bristique-25',
