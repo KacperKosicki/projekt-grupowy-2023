@@ -4,23 +4,27 @@ import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faExchangeAlt,
-  faShoppingBasket,
-} from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import { toggleProductFavorite } from '../../../redux/productsRedux';
 import Stars from '../Stars/Stars';
 
-<<<<<<< HEAD
-const ProductBox = ({ name, price, promo, isFavorite, id, stars, userStars, img, isFeatured, comparison }) => {
+const ProductBox = ({
+  name,
+  price,
+  promo,
+  isFavorite,
+  id,
+  stars,
+  userStars,
+  img,
+  isFeatured,
+  comparison,
+  oldPrice,
+}) => {
   const rootClassName = isFeatured ? styles.featuredRoot : styles.root;
 
-=======
-
-const ProductBox = ({ name, price, promo, stars, userStars, isFavorite, id, img, comparison, oldPrice }) => {
->>>>>>> a89be12 (add old prices to product box)
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
@@ -111,11 +115,8 @@ ProductBox.propTypes = {
   comparison: PropTypes.bool,
   isFavorite: PropTypes.bool,
   userStars: PropTypes.number,
-<<<<<<< HEAD
   isFeatured: PropTypes.bool,
-=======
   oldPrice: PropTypes.number,
->>>>>>> a89be12 (add old prices to product box)
 };
 
 export default ProductBox;
