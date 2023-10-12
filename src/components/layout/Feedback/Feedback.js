@@ -1,9 +1,12 @@
 import React from 'react';
-
 import styles from './Feedback.module.scss';
+import { useSelector } from 'react-redux';
+import { getAll } from '../../../redux/feedbackRedux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuoteRight } from '@fortawesome/free-solid-svg-icons';
 
 const Feedback = () => {
-
+  const feedbackList = useSelector(state => getAll(state));
 
   return (
     <div className={styles.root}>
@@ -29,17 +32,24 @@ const Feedback = () => {
           </div>
         </div>
         <div className={styles.feedback}>
-          <div>
-            <p>"</p>
+          <div className={styles.icon}>
+            <FontAwesomeIcon icon={faQuoteRight} />
           </div>
-          <div>
-            <p>Tekst</p>
+          <div className={styles.content}>
+            <p>{feedbackList[0].content}</p>
           </div>
-          <div className={'row ' + styles.author}>
-            <div className='col-6 '>IMG</div>
-            <div className='col-6 '>
-              <p>Name</p>
-              <p>Clientttt</p>
+          <div className={styles.author}>
+            <div className={styles.picture}>
+              <img
+                key={feedbackList[0].id}
+                className={styles.brandImg}
+                src={feedbackList[0].img}
+                alt={feedbackList[0].name}
+              />
+            </div>
+            <div className={styles.name}>
+              <p className={styles.authorName}>{feedbackList[0].name}</p>
+              <p>{feedbackList[0].category}</p>
             </div>
           </div>
         </div>
@@ -47,6 +57,5 @@ const Feedback = () => {
     </div>
   );
 };
-
 
 export default Feedback;
