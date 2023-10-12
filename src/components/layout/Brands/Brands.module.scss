@@ -1,0 +1,37 @@
+@import "../../../styles/settings.scss";
+.root {
+  padding: 5rem 0;
+  .slider {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .imgContainer {
+    flex: 1;
+    width: 1500px;
+    border: 1px solid $header-topbar-bg;
+    opacity: 0.5;
+    align-items: center;
+    margin: 10px;
+  }
+  .brandImg {
+    height: 100%;
+    width: 100%;
+  }
+  .sectionDevider {
+    border: none;
+    border-top: 2px solid #2a2a2a;
+    margin: 10px 0;
+  }
+  .sliderButton {
+    background-color: #2a2a2a;
+    color: #ffff;
+    flex: 0.2;
+    border: none;
+    margin: 10px;
+
+    &:hover {
+      background-color: $primary;
+    }
+  }
+}

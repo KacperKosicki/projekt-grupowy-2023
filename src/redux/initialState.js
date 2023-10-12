@@ -25,6 +25,7 @@ const initialState = {
       category: 'bed',
       price: 30,
       stars: 2,
+      userStars: 3,
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-2.jpg',
@@ -97,6 +98,7 @@ const initialState = {
       category: 'bed',
       price: 30,
       stars: 2,
+      userStars: 1,
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/bed-3.jpg',
@@ -294,7 +296,6 @@ const initialState = {
       img: '/images/furniture/bed-5.png',
       comparison: false,
       isFavorite: false,
-
     },
     {
       id: 'aenean-ru-bristique-25',
@@ -320,6 +321,16 @@ const initialState = {
       comparison: false,
       isFavorite: false,
     },
+  ],
+  brands: [
+    { id: 'brand-1', name: 'Brand-1', img: '/images/brands/brand-1.jpg' },
+    { id: 'brand-2', name: 'Brand-2', img: '/images/brands/brand-2.jpg' },
+    { id: 'brand-3', name: 'Brand-3', img: '/images/brands/brand-3.jpg' },
+    { id: 'brand-4', name: 'Brand-4', img: '/images/brands/brand-4.jpg' },
+    { id: 'brand-5', name: 'Brand-5', img: '/images/brands/brand-5.jpg' },
+    { id: 'brand-6', name: 'Brand-6', img: '/images/brands/brand-6.jpg' },
+    { id: 'brand-7', name: 'Brand-7', img: '/images/brands/brand-7.jpg' },
+    { id: 'brand-8', name: 'Brand-8', img: '/images/brands/brand-8.jpg' },
   ],
   cart: {
     products: [],
