@@ -9,21 +9,37 @@ import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import { toggleProductFavorite } from '../../../redux/productsRedux';
 import Stars from '../Stars/Stars';
+import { useState } from 'react';
+import Popup from '../../views/Popup/Popup';
 
-const ProductBox = ({
-  name,
-  price,
-  promo,
-  isFavorite,
-  id,
-  stars,
-  userStars,
-  img,
-  isFeatured,
-  comparison,
-  oldPrice,
-}) => {
+const ProductBox = props => {
+  const {
+    name,
+    price,
+    promo,
+    isFavorite,
+    id,
+    stars,
+    userStars,
+    img,
+    isFeatured,
+    comparison,
+    category,
+    oldPrice,
+  } = props;
+
   const rootClassName = isFeatured ? styles.featuredRoot : styles.root;
+
+  const [show, setShow] = useState(false);
+
+  const handleClosePopup = () => {
+    setShow(false);
+  };
+
+  const handleShowPopup = e => {
+    e.preventDefault();
+    setShow(true);
+  };
 
   const dispatch = useDispatch();
 
@@ -38,10 +54,25 @@ const ProductBox = ({
         {promo && <div className={styles.sale}>{promo}</div>}
         <img className={styles.img} src={img} alt={name} />
         <div className={styles.buttons}>
-          <Button variant='small'>Quick View</Button>
+          <Button variant='small' onClick={handleShowPopup}>
+            Quick View
+          </Button>
           <Button variant='small'>
             <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
           </Button>
+          <Popup
+            show={show}
+            handleClose={handleClosePopup}
+            name={name}
+            img={img}
+            category={category}
+            stars={stars}
+            userStars={userStars}
+            id={id}
+            price={price}
+            oldPrice={oldPrice}
+            promo={promo}
+          />
         </div>
         {isFeatured && (
           <div className={styles.counter}>
@@ -116,7 +147,9 @@ ProductBox.propTypes = {
   isFavorite: PropTypes.bool,
   userStars: PropTypes.number,
   isFeatured: PropTypes.bool,
+  category: PropTypes.string,
   oldPrice: PropTypes.number,
+
 };
 
 export default ProductBox;
