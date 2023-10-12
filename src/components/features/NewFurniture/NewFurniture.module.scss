@@ -1,6 +1,17 @@
 @import "../../../styles/settings.scss";
 
 .root {
+
+
+.galleryImg {
+  position: relative;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.hidden {
+    opacity: 0;
+}
   .panelBar {
     margin-bottom: 30px;
     position: relative;
@@ -97,5 +108,6 @@
         }
       }
     }
+    
   }
 }
