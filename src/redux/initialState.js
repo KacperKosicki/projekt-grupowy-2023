@@ -18,6 +18,7 @@ const initialState = {
       img: '/images/furniture/bed-1.jpg',
       comparison: false,
       isFavorite: false,
+      oldPrice: 20,
     },
     {
       id: 'aenean-ru-bristique-2',
@@ -31,6 +32,7 @@ const initialState = {
       img: '/images/furniture/bed-2.jpg',
       comparison: false,
       isFavorite: true,
+      oldPrice: 20,
     },
     {
       id: 'aenean-ru-bristique-3',
@@ -67,6 +69,7 @@ const initialState = {
       img: '/images/furniture/sofa-3.jpg',
       comparison: false,
       isFavorite: false,
+      oldPrice: 20,
     },
     {
       id: 'aenean-ru-bristique-6',
@@ -79,6 +82,7 @@ const initialState = {
       img: '/images/furniture/sofa-4.jpg',
       comparison: false,
       isFavorite: false,
+      oldPrice: 20,
     },
     {
       id: 'aenean-ru-bristique-7',
