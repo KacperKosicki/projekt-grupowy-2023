@@ -2,4 +2,31 @@
 
 .root {
   padding: $base-padding 0;
+
+  .common-styles {
+    // Common styles go here
+    border: 1px solid $header-bg;
+    margin: 5px;
+    width: 100%;
+    text-align: center
+  }
+  h1 {
+    line-height: 2;
+  }
+  .banner_container {
+    @extend .common-styles;
+    height: 150px;
+  }
+  .productList_container {
+    @extend .common-styles;
+    height: 600px;
+  }
+  .filters_container {
+    @extend .common-styles;
+    height: 600px;
+  }
+  .brands_container {
+    @extend .common-styles;
+    height: 150px;
+  }
 }
