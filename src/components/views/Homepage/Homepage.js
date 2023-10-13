@@ -11,6 +11,7 @@ import SectionFeatured from '../../layout/SectionFeatured/SectionFeatured';
 import Banner from '../../layout/Banner/Banner';
 import Feedback from '../../layout/Feedback/Feedback';
 import Chatbot from '../../features/Chatbot/Chatbot';
+import Blog from '../../layout/Blog/Blog';
 
 const Homepage = () => (
   <div className={styles.root}>
@@ -19,6 +20,7 @@ const Homepage = () => (
     <FeatureBoxes />
     <Sales />
     <NewFurniture />
+    <Blog />
     <Brands />
     <Feedback />
     <Chatbot />
