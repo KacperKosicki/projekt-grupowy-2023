@@ -16,7 +16,6 @@ import { toggleToCompare, getComparedProducts } from '../../../redux/productsRed
 import CompareStickyBar from '../../layout/CompareStickyBar/CompareStickyBar';
 
 const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison }) => {
-  console.log(comparison);
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
