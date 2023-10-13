@@ -60,18 +60,37 @@
       }
     }
   }
+
+
   .button {
     background-color: $form-border-color;
     color: #e1e1e1;
+  
 
-    &:hover {
+  &:hover {
       background-color: $primary;
-    }
-
-    /* Change the color of adjacent h3 element when button is hovered */
-    + .post h4 {
-      color: $primary;
-    }
+ 
   }
-
 }
+.hover {
+    color: $primary; 
+}
+.post {
+    position: relative;
+    z-index: 1;
+    background-color: #ffff;
+}
+}
+.post_column {
+    position: relative;
+    z-index: 1;
+}
+.background {
+    position: relative;
+    z-index: 2;
+    background-color: gray;
+    opacity: 0.5;
+    height: 200px;
+    width: 100%;
+}
+

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Blog.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
@@ -6,19 +6,16 @@ import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
 import Button from '../../common/Button/Button';
 
 const Blog = () => {
-  // const dots = [];
-  // for (let i = 0; i < this.state.pagesCount; i++) {
-  //   dots.push(
-  //     <li key ={i}>
-  //       <a
-  //         onClick={() => this.handlePageChange(i)}
-  //         className={i === activePage ? styles.active : ''}
-  //       >
-  //         page {i}
-  //       </a>
-  //     </li>
-  //   );
-  // }
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
+
+  const handleButtonHover = () => {
+    setIsButtonHovered(true);
+  };
+
+  const handleButtonLeave = () => {
+    setIsButtonHovered(false);
+  };
+
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -40,32 +37,40 @@ const Blog = () => {
           </div>
         </div>
         <div className='row'>
-          <div className='col-md-4'>
-            <div className={styles.background}></div>
-            <div className={styles.post}>
-              <div className={styles.header}>
-                <div className='row d-flex justify-content-between'>
-                  <div className='col-6 p-3'>
-                    <FontAwesomeIcon icon={faEye}>Check</FontAwesomeIcon>
-                    <span className='px-2'>12.11.2023</span>
-                  </div>
-                  <div className='col-6 p-3'>
-                    <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
-                    <span className='px-2'>4 Comments</span>
+          <div className={styles.post_column + ' col-md-4'}>
+            <div className={styles.background}>
+              <div className={styles.post}>
+                <div className={styles.header}>
+                  <div className='row d-flex justify-content-between'>
+                    <div className='col-6 p-3'>
+                      <FontAwesomeIcon icon={faEye}>Check</FontAwesomeIcon>
+                      <span className='px-2'>12.11.2023</span>
+                    </div>
+                    <div className='col-6 p-3'>
+                      <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
+                      <span className='px-2'>4 Comments</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <h4>Product That Flight Static</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non nunc in
-                ipsum rutrum tincidunt in ac libero. Sed non nunc in ipsum rutrum
-                tincidunt in ac libero. Sed non nunc in ipsum rutrum tincidunt in ac
-                libero.
-              </p>
-              <div className='text-center'>
-                <Button variant='white' className={'mx-auto ' + styles.button}>
-                  SHOP NOW
-                </Button>
+                <h4 className={isButtonHovered ? styles.hover : ''}>
+                  Product That Flight Static
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non nunc
+                  in ipsum rutrum tincidunt in ac libero. Sed non nunc in ipsum rutrum
+                  tincidunt in ac libero. Sed non nunc in ipsum rutrum tincidunt in ac
+                  libero.
+                </p>
+                <div className='text-center'>
+                  <Button
+                    onMouseEnter={handleButtonHover}
+                    onMouseLeave={handleButtonLeave}
+                    variant='white'
+                    className={'mx-auto ' + styles.button}
+                  >
+                    SHOP NOW
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
