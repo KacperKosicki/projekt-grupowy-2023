@@ -1,0 +1,102 @@
+@import "../../../styles/settings.scss";
+
+.chatbot {
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+  z-index: 1000;
+  margin: 20px;
+  border: 2px solid $primary;
+  border-radius: 5px;
+
+
+  .chatbotToggleButton button {
+    padding: 10px 20px;
+    background-color: $primary;
+    color: $text-white;
+    border: none;
+    cursor: pointer;
+    width: 300px;
+  }
+
+  .chatbotWindow {
+    background-color: $background-chat;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+  }
+
+  .chatbotHeader {
+    background-color: $primary;
+    color: $text-white;
+    padding: 10px;
+    font-weight: bold;
+    text-align: right;
+
+    .icon{
+      padding-right: 10px;
+    }
+  }
+
+  .chatbotMessages {
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .userMessage {
+    text-align: right;
+    margin-bottom: 10px;
+    background-color: $background-chat;
+    border-radius: 5px;
+    max-width: 200px;
+    align-self: flex-end;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .botMessage {
+    text-align: left;
+    margin-bottom: 10px;
+    background-color: $background-chat;
+    border-radius: 5px;
+    max-width: 200px;
+    align-self: flex-start;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .chatbotInput {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background: $textarea-chat;
+
+    input {
+      flex: 1;
+      padding: 5px;
+      border: none;
+      background: none;
+    }
+
+    input::placeholder {
+      color: $text-white;
+    }
+
+    input:focus {
+      outline: none;
+      border: none;
+    }
+
+
+    button {
+      background-color: $textarea-chat;
+      color: $primary;
+      border: none;
+      border-radius: 5px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+}
