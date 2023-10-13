@@ -8,6 +8,7 @@ import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
 import Sales from '../../features/Sales/Sales';
 import Brands from '../../layout/Brands/Brands';
 import SectionFeatured from '../../layout/SectionFeatured/SectionFeatured';
+import Feedback from '../../layout/Feedback/Feedback';
 
 const Homepage = () => (
   <div className={styles.root}>
@@ -16,6 +17,7 @@ const Homepage = () => (
     <Sales />
     <NewFurniture />
     <Brands />
+    <Feedback />
   </div>
 );
 
