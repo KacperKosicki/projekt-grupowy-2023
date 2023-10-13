@@ -8,7 +8,7 @@ import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
 import Sales from '../../features/Sales/Sales';
 import Brands from '../../layout/Brands/Brands';
 import SectionFeatured from '../../layout/SectionFeatured/SectionFeatured';
-import Banner from '../../features/Banner/Banner';
+import Banner from '../../layout/Banner/Banner';
 import Feedback from '../../layout/Feedback/Feedback';
 
 const Homepage = () => (
