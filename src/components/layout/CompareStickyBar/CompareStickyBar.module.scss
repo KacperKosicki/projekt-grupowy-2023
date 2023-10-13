@@ -12,11 +12,11 @@
     padding: 10px;
     border-top: 2px solid $footer-bg;
     box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.1);
-  
+
     .product {
       position: relative;
       margin-right: 10px;
-  
+
       img {
         max-width: 60px;
         max-height: 60px;
@@ -41,7 +41,7 @@
         right: 5px;
         cursor: pointer;
         color: #888;
-        transition: color 2s;       
+        transition: color 2s;
     }
 }
 

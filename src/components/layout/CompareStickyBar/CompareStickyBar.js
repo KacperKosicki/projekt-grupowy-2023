@@ -28,7 +28,11 @@ const CompareStickyBar = () => {
     <div className={styles.compareStickyBar}>
       {comparedProducts.map(product => (
         <div key={product.id} className={styles.product}>
-          <img src={product.img} alt={product.name} />
+          <img
+            src={product.img}
+            alt={product.name}
+            onClick={() => handleRemoveFromComparison(product.id)}
+          />
           <FontAwesomeIcon
             icon={faTimes}
             className={styles.closeIcon}
