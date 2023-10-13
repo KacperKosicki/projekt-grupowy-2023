@@ -8,7 +8,6 @@ import ProductBox from '../../common/ProductBox/ProductBox';
 import Swipeable from '../Swipeable/Swipeable';
 
 class NewFurniture extends React.Component {
-
   state = {
     activePage: 0,
     activeCategory: 'bed',
@@ -85,7 +84,7 @@ class NewFurniture extends React.Component {
     const dots = [];
     for (let i = 0; i < this.state.pagesCount; i++) {
       dots.push(
-        <li key ={i}>
+        <li key={i}>
           <a
             onClick={() => this.handlePageChange(i)}
             className={i === activePage ? styles.active : ''}
@@ -125,12 +124,13 @@ class NewFurniture extends React.Component {
             </div>
           </div>
           <Swipeable leftAction={this.swipeLeft} rightAction={this.swipeRight}>
-            <div
-              className={clsx(styles.galleryImg, transition ? styles.hidden : '')}
-            >
+            <div className={clsx(styles.galleryImg, transition ? styles.hidden : '')}>
               <div className='row'>
                 {this.state.categoryProducts
-                  .slice(activePage * 8, (activePage + 1) * this.productDisplay(screenMode))
+                  .slice(
+                    activePage * 8,
+                    (activePage + 1) * this.productDisplay(screenMode)
+                  )
                   .map(item => (
                     <div key={item.id} className='col-sm-6 col-md-4 col-lg-3'>
                       <ProductBox {...item} isFeatured={isFeatured} />

@@ -1,0 +1,59 @@
+@import "../../../styles/settings.scss";
+
+.banner {
+    background-color: $gray-1;
+    height: 200px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    flex-direction: column;
+    line-height: 27px;
+}
+
+.titleTop {
+    font-size: 54px;
+    font-weight: 300;
+    padding-top: 27px;
+
+    span {
+        font-weight: bold;
+    }
+}
+
+.titleBottom {
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: 12px;
+    padding-left: 9px;
+
+    .span {
+        color: $primary; 
+        letter-spacing: 11px;
+        font-weight: 500;
+    }
+    .always {
+        letter-spacing: 9px;
+    }
+}
+
+.barBottom {
+    height: 57px;
+    width: 100%;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    padding-top: 14px;
+    padding-left: 10px;
+    font-size: 17px;
+
+    .arrow {
+        font-size: 15px;
+    }
+
+    .bottomBarColor {
+        color: $primary;
+        font-weight: bold;
+    }
+}
