@@ -8,9 +8,11 @@ import NewFurniture from '../../features/NewFurniture/NewFurnitureContainer';
 import Sales from '../../features/Sales/Sales';
 import Brands from '../../layout/Brands/Brands';
 import SectionFeatured from '../../layout/SectionFeatured/SectionFeatured';
+import Banner from '../../features/Banner/Banner';
 
 const Homepage = () => (
   <div className={styles.root}>
+    <Banner />
     <SectionFeatured />
     <FeatureBoxes />
     <Sales />
