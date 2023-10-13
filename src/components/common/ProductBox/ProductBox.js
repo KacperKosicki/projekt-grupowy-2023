@@ -4,11 +4,19 @@ import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import {
+  faStar,
+  faExchangeAlt,
+  faShoppingBasket,
+} from '@fortawesome/free-solid-svg-icons';
 import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
-import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
-import { toggleProductFavorite, toggleToCompare, getComparedProducts } from '../../../redux/productsRedux';
+import {
+  toggleProductFavorite,
+  toggleToCompare,
+  getComparedProducts,
+} from '../../../redux/productsRedux';
 import CompareStickyBar from '../../layout/CompareStickyBar/CompareStickyBar';
 import Stars from '../Stars/Stars';
 
