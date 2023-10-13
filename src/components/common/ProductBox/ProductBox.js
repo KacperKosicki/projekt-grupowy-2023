@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
-import { faStar as faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import { toggleProductFavorite } from '../../../redux/productsRedux';
 import Stars from '../Stars/Stars';
@@ -14,13 +14,17 @@ const ProductBox = ({
   name,
   price,
   promo,
-  stars,
-  userStars,
   isFavorite,
   id,
+  stars,
+  userStars,
   img,
+  isFeatured,
   comparison,
+  oldPrice,
 }) => {
+  const rootClassName = isFeatured ? styles.featuredRoot : styles.root;
+
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
@@ -29,7 +33,7 @@ const ProductBox = ({
   };
 
   return (
-    <div className={styles.root}>
+    <div className={rootClassName}>
       <div className={styles.photo}>
         {promo && <div className={styles.sale}>{promo}</div>}
         <img className={styles.img} src={img} alt={name} />
@@ -39,6 +43,26 @@ const ProductBox = ({
             <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
           </Button>
         </div>
+        {isFeatured && (
+          <div className={styles.counter}>
+            <div className={styles.counterItem}>
+              <span>25</span>
+              <p>DAYS</p>
+            </div>
+            <div className={styles.counterItem}>
+              <span>10</span>
+              <p>HRS</p>
+            </div>
+            <div className={styles.counterItem}>
+              <span>45</span>
+              <p>MINS</p>
+            </div>
+            <div className={styles.counterItem}>
+              <span>30</span>
+              <p>SECS</p>
+            </div>
+          </div>
+        )}
       </div>
       <div className={styles.content}>
         <h5>{name}</h5>
@@ -47,6 +71,11 @@ const ProductBox = ({
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
+          {isFeatured && (
+            <Button variant='outline'>
+              <FontAwesomeIcon icon={faEye}>Check</FontAwesomeIcon>
+            </Button>
+          )}
           <Button
             variant='outline'
             onClick={toggleFavorite}
@@ -61,10 +90,13 @@ const ProductBox = ({
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
         </div>
-        <div className={styles.price}>
-          <Button noHover variant='small'>
-            $ {price}
-          </Button>
+        <div className={styles.prices}>
+          {oldPrice && <div className={styles.oldPrice}>$ {oldPrice}</div>}
+          <div className={styles.price}>
+            <Button noHover variant='small'>
+              $ {price}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -83,6 +115,8 @@ ProductBox.propTypes = {
   comparison: PropTypes.bool,
   isFavorite: PropTypes.bool,
   userStars: PropTypes.number,
+  isFeatured: PropTypes.bool,
+  oldPrice: PropTypes.number,
 };
 
 export default ProductBox;

@@ -4,6 +4,7 @@
   background-color: #ffffff;
   border: 1px solid #e1e1e1;
   margin-bottom: 2rem;
+  
 
   &:hover .photo .buttons {
     visibility: visible;
@@ -14,12 +15,14 @@
 
   .photo {
     position: relative;
+    padding: 10px;
     background: {
       color: #f4f5f7;
       size: contain;
       position: center;
       repeat: no-repeat;
     }
+
     overflow: hidden;
     align-items: flex-end;
 
@@ -47,6 +50,7 @@
       justify-content: space-between;
       visibility: hidden;
     }
+
   }
 
   .content {
@@ -89,6 +93,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .prices {
+      align-items: center;
+      display: flex;
+    }
+
+    .oldPrice {
+      font-size: 13px;
+      text-decoration: line-through;
+      color: #A5A5A5;
+      margin-right: 5px;
+    }
   }
 
   .icon_selected {
@@ -96,3 +112,67 @@
     color: #ffffff;
   }
 }
+
+.featuredRoot {
+  @extend .root;
+
+  .sale {
+    display: none;
+  }
+
+  .photo {
+    position: relative;
+  }
+
+  &:hover .photo .counter {
+    display: flex;
+  }
+
+  .buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .buttons :first-child {
+    display: none;
+  }
+
+  .buttons :last-child {
+    align-items: center;
+  }
+
+  .counter {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 5px 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+
+    .counterItem {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5px;
+      margin: 4px;
+      background-color: #292929;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+
+      span {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 12px;
+        margin: 0;
+      }
+    }
+  }
+  }
