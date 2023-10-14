@@ -22,7 +22,7 @@ const Reviews = () => (
             </div>
             <div className={styles.reviews_innercontainer}>
               <div className={styles.review_field}>
-                <p className='py-4'>There are no reviews for this product</p>
+                <p className='py-4'>There are no reviews for this product.</p>
                 <button className={styles.review_button}>Add a review</button>
               </div>
               <div>
@@ -38,7 +38,6 @@ const Reviews = () => (
                   <Form.Label>Your Review</Form.Label>
                   <Form.Control as='textarea' rows='10' type='text' />
                 </Form.Group>
-
                 <div className='row mb-3'>
                   <div className='col'>
                     <Form.Group controlId='name'>
