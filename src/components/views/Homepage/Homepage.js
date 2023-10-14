@@ -11,6 +11,8 @@ import SectionFeatured from '../../layout/SectionFeatured/SectionFeatured';
 import Banner from '../../layout/Banner/Banner';
 import Feedback from '../../layout/Feedback/Feedback';
 import Chatbot from '../../features/Chatbot/Chatbot';
+import BlogSection from '../../layout/BlogSection/BlogSection';
+
 
 const Homepage = () => (
   <div className={styles.root}>
@@ -19,6 +21,7 @@ const Homepage = () => (
     <FeatureBoxes />
     <Sales />
     <NewFurniture />
+    <BlogSection />
     <Brands />
     <Feedback />
     <Chatbot />
