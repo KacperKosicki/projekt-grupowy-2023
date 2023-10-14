@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './Blog.module.scss';
+import styles from './BlogSection.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDay, faComments } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
 
-const Blog = () => {
+const BlogSection = () => {
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -76,4 +76,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default BlogSection;
