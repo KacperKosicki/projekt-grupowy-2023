@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import styles from './Blog.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
-import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
+import { faCalendarDay, faComments } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
 
 const Blog = () => {
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const [isButtonHovered, setIsButtonHovered] = useState([false, false, false]);
 
-  const handleButtonHover = () => {
-    setIsButtonHovered(true);
+  const handleButtonHover = postNr => {
+    const updatedHoverState = [...isButtonHovered];
+    updatedHoverState[postNr] = true;
+    setIsButtonHovered(updatedHoverState);
   };
 
-  const handleButtonLeave = () => {
-    setIsButtonHovered(false);
+  const handleButtonLeave = postNr => {
+    const updatedHoverState = [...isButtonHovered];
+    updatedHoverState[postNr] = false;
+    setIsButtonHovered(updatedHoverState);
   };
 
   return (
@@ -37,45 +40,48 @@ const Blog = () => {
           </div>
         </div>
         <div className='row'>
-          <div className={styles.post_column + ' col-md-4'}>
-            <div className={styles.background}>
+          {Array.from({ length: 3 }, (_, postNr) => (
+            <div key={postNr} className={styles.post_column + ' col-md-4'}>
+              <div className={styles.background}></div>
               <div className={styles.post}>
                 <div className={styles.header}>
                   <div className='row d-flex justify-content-between'>
                     <div className='col-6 p-3'>
-                      <FontAwesomeIcon icon={faEye}>Check</FontAwesomeIcon>
+                      <FontAwesomeIcon
+                        className='px-2'
+                        icon={faCalendarDay}
+                      ></FontAwesomeIcon>
                       <span className='px-2'>12.11.2023</span>
                     </div>
                     <div className='col-6 p-3'>
-                      <FontAwesomeIcon icon={faHeart}>Favorite</FontAwesomeIcon>
+                      <FontAwesomeIcon icon={faComments}></FontAwesomeIcon>
                       <span className='px-2'>4 Comments</span>
                     </div>
                   </div>
                 </div>
-                <h4 className={isButtonHovered ? styles.hover : ''}>
-                  Product That Flight Static
-                </h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non nunc
-                  in ipsum rutrum tincidunt in ac libero. Sed non nunc in ipsum rutrum
-                  tincidunt in ac libero. Sed non nunc in ipsum rutrum tincidunt in ac
-                  libero.
-                </p>
-                <div className='text-center'>
-                  <Button
-                    onMouseEnter={handleButtonHover}
-                    onMouseLeave={handleButtonLeave}
-                    variant='white'
-                    className={'mx-auto ' + styles.button}
-                  >
-                    SHOP NOW
-                  </Button>
+                <div className={styles.content}>
+                  <h4 className={isButtonHovered[postNr] ? styles.hover : ''}>
+                    Product That Flight Static
+                  </h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+                    nunc in ipsum rutrum tincidunt in ac libero. Sed non nunc in ipsum
+                    rutrum tincidunt in ac libero.
+                  </p>
+                  <div className='text-center pt-2'>
+                    <Button
+                      onMouseEnter={() => handleButtonHover(postNr)}
+                      onMouseLeave={() => handleButtonLeave(postNr)}
+                      variant='white'
+                      className={styles.button}
+                    >
+                      Read More
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='col-md-4'></div>
-          <div className='col-md-4'></div>
+          ))}
         </div>
       </div>
     </div>
