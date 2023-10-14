@@ -1,0 +1,41 @@
+@import "../../../styles/settings.scss";
+
+.root {
+
+  .form {
+    width: 400px;
+    margin: 50px auto;
+    min-height: 100%;
+
+  }
+
+  Button {
+    color: $text-white;
+  }
+
+  .radio {
+
+    input {
+      background-color: $text-white;
+      border-color: $text-color;
+    }
+
+    input:checked {
+      background: $text-color;
+      border-color: $text-white;
+    }
+  }
+
+  .checkboxes {
+    font-size: 12px;
+    ;
+
+    input {
+      border-color: $text-color;
+    }
+
+    input:checked {
+      border-color: $text-color;
+    }
+  }
+}
