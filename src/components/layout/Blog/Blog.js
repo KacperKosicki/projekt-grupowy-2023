@@ -1,24 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Blog.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDay, faComments } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../common/Button/Button';
 
 const Blog = () => {
-  const [isButtonHovered, setIsButtonHovered] = useState([false, false, false]);
-
-  const handleButtonHover = postNr => {
-    const updatedHoverState = [...isButtonHovered];
-    updatedHoverState[postNr] = true;
-    setIsButtonHovered(updatedHoverState);
-  };
-
-  const handleButtonLeave = postNr => {
-    const updatedHoverState = [...isButtonHovered];
-    updatedHoverState[postNr] = false;
-    setIsButtonHovered(updatedHoverState);
-  };
-
   return (
     <div className={styles.root}>
       <div className='container'>
@@ -48,7 +34,7 @@ const Blog = () => {
                   <div className='row d-flex justify-content-between'>
                     <div className='col-6 p-3'>
                       <FontAwesomeIcon
-                        className='px-2'
+                        className='px-3'
                         icon={faCalendarDay}
                       ></FontAwesomeIcon>
                       <span className='px-2'>12.11.2023</span>
@@ -60,7 +46,7 @@ const Blog = () => {
                   </div>
                 </div>
                 <div className={styles.content}>
-                  <h4 className={isButtonHovered[postNr] ? styles.hover : ''}>
+                  <h4 className={postNr === 0 ? styles.active : ''}>
                     Product That Flight Static
                   </h4>
                   <p>
@@ -70,10 +56,12 @@ const Blog = () => {
                   </p>
                   <div className='text-center pt-2'>
                     <Button
-                      onMouseEnter={() => handleButtonHover(postNr)}
-                      onMouseLeave={() => handleButtonLeave(postNr)}
                       variant='white'
-                      className={styles.button}
+                      className={
+                        postNr === 0
+                          ? styles.button + ' ' + styles.active
+                          : styles.button
+                      }
                     >
                       Read More
                     </Button>
