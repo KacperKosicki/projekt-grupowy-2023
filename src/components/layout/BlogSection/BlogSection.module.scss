@@ -20,15 +20,29 @@
         margin: 0;
         letter-spacing: 1px;
       }
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 45px;
+        border-bottom: 4px solid $primary;
+      }
     }
 
     .dots {
-      display: flex;
+      position: absolute;
+      top:0;
+      right: -20px;
+      padding: 0;
 
       ul {
         margin: 0;
+        padding: 0 0 0 1rem;
         list-style: none;
-        display: flex;
+        background-color: #ffffff;
+        transform: translateY(15px);
+
 
         li {
           display: inline-block;

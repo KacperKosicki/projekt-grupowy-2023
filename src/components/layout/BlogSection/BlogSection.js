@@ -10,15 +10,18 @@ const BlogSection = () => {
       <div className='container'>
         <div className={styles.panelBar}>
           <div className='row no-gutters align-items-end'>
-            <div className={'col-auto ' + styles.heading}>
+            <div className={'col ' + styles.heading}>
               <h3>Latest Blog</h3>
             </div>
-            <div className={'col ' + styles.menu}></div>
             <div className={'col-auto ' + styles.dots}>
               <ul>
                 <li>
                   <a className={styles.active}>page 1</a>
+                </li>
+                <li>
                   <a>page 2</a>
+                </li>
+                <li>
                   <a>page 3</a>
                 </li>
               </ul>
