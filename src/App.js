@@ -10,12 +10,14 @@ import MainLayout from './components/layout/MainLayout/MainLayout';
 import Homepage from './components/views/Homepage/Homepage';
 import ProductList from './components/views/ProductList/ProductList';
 import ProductPage from './components/views/ProductPage/ProductPage';
+import RegisterPage from './components/views/RegisterPage/RegisterPage';
 
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
       <MainLayout>
         <Switch>
+          <Route exact path={'/register'} component={RegisterPage} />
           <Route exact path={'/'} component={Homepage} />
           <Route exact path={'/shop/:categoryId'} component={ProductList} />
           <Route exact path={'/product/:productId'} component={ProductPage} />
