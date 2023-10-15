@@ -134,14 +134,20 @@ const RegisterForm = () => {
             />
             <Form.Check
               type='checkbox'
-              label='Akceptuję warunki'
+              label={
+                <span>
+                  Akceptuję warunki <span className={styles.regulamin}>regulaminu</span>{' '}
+                  *
+                </span>
+              }
               name='acceptTerms'
               checked={checkboxes.acceptTerms}
               onChange={handleCheckboxChange}
             />
+
             <Form.Check
               type='checkbox'
-              label='Chcę otrzymywać newsletter'
+              label='Tak, tak! Chcę otrzymywać JEŻowy newsletter'
               name='receiveNewsletter'
               checked={checkboxes.receiveNewsletter}
               onChange={handleCheckboxChange}
@@ -156,7 +162,7 @@ const RegisterForm = () => {
             <Col sm='6' className='d-flex justify-content-end'>
               <NavLink to='/'>
                 <Button variant='primary' type='submit'>
-                  Zapisz zmiany
+                  Zarejestruj się
                 </Button>
               </NavLink>
             </Col>

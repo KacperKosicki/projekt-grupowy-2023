@@ -28,7 +28,10 @@
 
   .checkboxes {
     font-size: 12px;
-    ;
+
+    .regulamin {
+      color: $primary;
+    }
 
     input {
       border-color: $text-color;
