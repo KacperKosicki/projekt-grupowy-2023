@@ -13,14 +13,13 @@ import Feedback from '../../layout/Feedback/Feedback';
 import Chatbot from '../../features/Chatbot/Chatbot';
 import BlogSection from '../../layout/BlogSection/BlogSection';
 
-
 const Homepage = () => (
   <div className={styles.root}>
     <Banner />
     <SectionFeatured />
     <FeatureBoxes />
     <Sales />
-    <NewFurniture />
+    <NewFurniture productsPerPage={8} />
     <BlogSection />
     <Brands />
     <Feedback />

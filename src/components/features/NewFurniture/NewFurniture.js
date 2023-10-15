@@ -21,7 +21,9 @@ class NewFurniture extends React.Component {
     this.state.categoryProducts = props.products.filter(
       item => item.category === this.state.activeCategory
     );
-    const pagesCount = Math.ceil(this.state.categoryProducts.length / 8);
+    const pagesCount = Math.ceil(
+      this.state.categoryProducts.length / this.props.productsPerPage
+    );
     this.state.pagesCount = pagesCount;
   }
 
@@ -67,7 +69,7 @@ class NewFurniture extends React.Component {
   productDisplay(screenMode) {
     let number = 8;
     if (screenMode === 'desktop') {
-      number = 8;
+      number = this.props.productsPerPage;
     } else if (screenMode === 'tablet') {
       number = 3;
     } else if (screenMode === 'mobile') {
@@ -77,7 +79,7 @@ class NewFurniture extends React.Component {
   }
 
   render() {
-    const { categories, screenMode } = this.props;
+    const { categories, screenMode, productsPerPage } = this.props;
 
     const { activeCategory, activePage, transition } = this.state;
 
@@ -128,7 +130,7 @@ class NewFurniture extends React.Component {
               <div className='row'>
                 {this.state.categoryProducts
                   .slice(
-                    activePage * 8,
+                    activePage * productsPerPage,
                     (activePage + 1) * this.productDisplay(screenMode)
                   )
                   .map(item => (
@@ -165,6 +167,7 @@ NewFurniture.propTypes = {
     })
   ),
   screenMode: PropTypes.string,
+  productsPerPage: PropTypes.number,
 };
 
 NewFurniture.defaultProps = {
