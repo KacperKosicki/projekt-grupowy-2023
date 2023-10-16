@@ -9,6 +9,18 @@ const Brands = () => {
   const [firstImg, setFirstImg] = useState(0);
   const [lastImg, setLastImg] = useState(6);
 
+  const productDisplay = screenMode => {
+    let number = 8;
+    if (screenMode === 'desktop') {
+      number = this.props.productsPerPage;
+    } else if (screenMode === 'tablet') {
+      number = 3;
+    } else if (screenMode === 'mobile') {
+      number = 2;
+    }
+    return number;
+  };
+
   const brands = useSelector(state => getAll(state));
   const handleBack = () => {
     if (firstImg > 0) {
