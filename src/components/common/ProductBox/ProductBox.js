@@ -17,7 +17,6 @@ import CompareStickyBar from '../../features/CompareStickyBar/CompareStickyBar';
 
 const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison }) => {
   const dispatch = useDispatch();
-  console.log(comparison);
 
   const toggleFavorite = e => {
     e.preventDefault();
