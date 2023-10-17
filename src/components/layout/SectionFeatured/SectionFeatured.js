@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { getAll } from '../../../redux/productsRedux';
 import styles from './SectionFeatured.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
-import Button from '../../common/Button/Button';
+import FeaturedProduct from '../FeaturedProduct/FeaturedProduct';
 
 const SectionFeatured = () => {
   const products = useSelector(getAll);
@@ -34,25 +34,7 @@ const SectionFeatured = () => {
             </div>
             <ProductBox {...exampleProduct} isFeatured={isFeatured} />
           </div>
-          <div className={styles.featuredProduct}>
-            <div className={styles.featuredProduct_inner}>
-              <p>
-                INDOOR <span>FURNITURE</span>
-              </p>
-              <p>SAVE UP TO 50% OF ALL FURNITURE</p>
-              <Button variant='white' className={styles.button}>
-                SHOP NOW
-              </Button>
-            </div>
-            <div className={styles.featuredProduct_buttons}>
-              <Button variant='wide' className={styles.longButton}>
-                {'<'}
-              </Button>
-              <Button variant='wide' className={styles.longButton}>
-                {'>'}
-              </Button>
-            </div>
-          </div>
+          <FeaturedProduct />
         </div>
       </div>
     </div>
