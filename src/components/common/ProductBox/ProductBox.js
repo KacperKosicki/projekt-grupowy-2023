@@ -9,13 +9,32 @@ import {
   faExchangeAlt,
   faShoppingBasket,
 } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
-import { toggleProductFavorite } from '../../../redux/productsRedux';
-import { toggleToCompare, getComparedProducts } from '../../../redux/productsRedux';
 import CompareStickyBar from '../../features/CompareStickyBar/CompareStickyBar';
+import {
+  toggleProductFavorite,
+  toggleToCompare,
+  getComparedProducts,
+} from '../../../redux/productsRedux';
+import Stars from '../Stars/Stars';
 
-const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison }) => {
+const ProductBox = ({
+  name,
+  price,
+  promo,
+  isFavorite,
+  id,
+  stars,
+  userStars,
+  img,
+  isFeatured,
+  comparison,
+  oldPrice,
+}) => {
+  const rootClassName = isFeatured ? styles.featuredRoot : styles.root;
+
   const dispatch = useDispatch();
 
   const toggleFavorite = e => {
@@ -34,7 +53,7 @@ const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison
   };
 
   return (
-    <div className={styles.root}>
+    <div className={rootClassName}>
       <div className={styles.photo}>
         {promo && <div className={styles.sale}>{promo}</div>}
         <img className={styles.img} src={img} alt={name} />
@@ -44,24 +63,39 @@ const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison
             <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
           </Button>
         </div>
+        {isFeatured && (
+          <div className={styles.counter}>
+            <div className={styles.counterItem}>
+              <span>25</span>
+              <p>DAYS</p>
+            </div>
+            <div className={styles.counterItem}>
+              <span>10</span>
+              <p>HRS</p>
+            </div>
+            <div className={styles.counterItem}>
+              <span>45</span>
+              <p>MINS</p>
+            </div>
+            <div className={styles.counterItem}>
+              <span>30</span>
+              <p>SECS</p>
+            </div>
+          </div>
+        )}
       </div>
       <div className={styles.content}>
         <h5>{name}</h5>
-        <div className={styles.stars}>
-          {[1, 2, 3, 4, 5].map(i => (
-            <a key={i} href='#'>
-              {i <= stars ? (
-                <FontAwesomeIcon icon={faStar}>{i} stars</FontAwesomeIcon>
-              ) : (
-                <FontAwesomeIcon icon={farStar}>{i} stars</FontAwesomeIcon>
-              )}
-            </a>
-          ))}
-        </div>
+        <Stars stars={stars} userStars={userStars} id={id} />
       </div>
       <div className={styles.line}></div>
       <div className={styles.actions}>
         <div className={styles.outlines}>
+          {isFeatured && (
+            <Button variant='outline'>
+              <FontAwesomeIcon icon={faEye}>Check</FontAwesomeIcon>
+            </Button>
+          )}
           <Button
             variant='outline'
             onClick={toggleFavorite}
@@ -99,6 +133,9 @@ ProductBox.propTypes = {
   imgAlt: PropTypes.string,
   comparison: PropTypes.bool,
   isFavorite: PropTypes.bool,
+  userStars: PropTypes.number,
+  isFeatured: PropTypes.bool,
+  oldPrice: PropTypes.number,
 };
 
 export default ProductBox;

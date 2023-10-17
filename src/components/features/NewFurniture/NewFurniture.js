@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import clsx from 'clsx';
 
 import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
@@ -12,6 +13,7 @@ class NewFurniture extends React.Component {
     activeCategory: 'bed',
     pagesCount: 0,
     categoryProducts: [],
+    transition: false,
   };
 
   constructor(props) {
@@ -46,11 +48,20 @@ class NewFurniture extends React.Component {
   };
 
   handlePageChange(newPage) {
-    this.setState({ activePage: newPage });
+    this.setState({ transition: true });
+    setTimeout(() => {
+      this.setState({ activePage: newPage });
+      this.setState({ transition: false });
+    }, 500);
   }
 
   handleCategoryChange(newCategory) {
-    this.setState({ activeCategory: newCategory });
+    this.setState({ transition: true });
+    setTimeout(() => {
+      this.setState({ activeCategory: newCategory });
+      this.setState({ transition: false });
+      this.setState({ activePage: 0 });
+    }, 500);
   }
 
   productDisplay(screenMode) {
@@ -67,21 +78,23 @@ class NewFurniture extends React.Component {
 
   render() {
     const { categories, screenMode } = this.props;
-    const { activeCategory, activePage } = this.state;
+
+    const { activeCategory, activePage, transition } = this.state;
 
     const dots = [];
     for (let i = 0; i < this.state.pagesCount; i++) {
       dots.push(
-        <li>
+        <li key={i}>
           <a
             onClick={() => this.handlePageChange(i)}
-            className={i === activePage && styles.active}
+            className={i === activePage ? styles.active : ''}
           >
             page {i}
           </a>
         </li>
       );
     }
+    const isFeatured = false;
 
     return (
       <div className={styles.root}>
@@ -96,7 +109,7 @@ class NewFurniture extends React.Component {
                   {categories.map(item => (
                     <li key={item.id}>
                       <a
-                        className={item.id === activeCategory && styles.active}
+                        className={item.id === activeCategory ? styles.active : ''}
                         onClick={() => this.handleCategoryChange(item.id)}
                       >
                         {item.name}
@@ -111,14 +124,19 @@ class NewFurniture extends React.Component {
             </div>
           </div>
           <Swipeable leftAction={this.swipeLeft} rightAction={this.swipeRight}>
-            <div className='row'>
-              {this.state.categoryProducts
-                .slice(activePage * 8, (activePage + 1) * this.productDisplay(screenMode))
-                .map(item => (
-                  <div key={item.id} className='col-sm-6 col-md-4 col-lg-3'>
-                    <ProductBox {...item} />
-                  </div>
-                ))}
+            <div className={clsx(styles.galleryImg, transition ? styles.hidden : '')}>
+              <div className='row'>
+                {this.state.categoryProducts
+                  .slice(
+                    activePage * 8,
+                    (activePage + 1) * this.productDisplay(screenMode)
+                  )
+                  .map(item => (
+                    <div key={item.id} className='col-sm-6 col-md-4 col-lg-3'>
+                      <ProductBox {...item} isFeatured={isFeatured} />
+                    </div>
+                  ))}
+              </div>
             </div>
           </Swipeable>
         </div>

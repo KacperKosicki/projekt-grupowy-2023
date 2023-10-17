@@ -9,12 +9,12 @@ export const getComparedProducts = ({ products }) =>
   products.filter(product => product.comparison === true);
 
 /* actions */
-const reducerName = 'products';
-const createActionName = name => `app/${reducerName}/${name}`;
+const createActionName = actionName => `app/products/${actionName}`;
 
 /* action types */
 const TOGGLE_PRODUCT_FAVORITE = createActionName('TOGGLE_PRODUCT_FAVORITE');
 const TOGGLE_TO_COMPARE = createActionName('TOGGLE_TO_COMPARE');
+const UPDATE_PRODUCT_STARS = createActionName('UPDATE_PRODUCT_STARS');
 const REMOVE_FROM_COMPARISON = createActionName('REMOVE_FROM_COMPARISON');
 const INITIALIZE_PRODUCTS = createActionName('INITIALIZE_PRODUCTS');
 
@@ -29,6 +29,11 @@ export const removeFromComparison = payload => ({
   payload,
 });
 export const initializeProducts = () => ({ type: INITIALIZE_PRODUCTS });
+
+export const updateProductStars = payload => ({
+  type: UPDATE_PRODUCT_STARS,
+  payload,
+});
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
@@ -51,6 +56,12 @@ export default function reducer(statePart = [], action = {}) {
       );
     case INITIALIZE_PRODUCTS:
       return statePart.map(product => ({ ...product, comparison: false })); // Ustawiam wszystkie produkty na false
+    case UPDATE_PRODUCT_STARS:
+      return statePart.map(product =>
+        product.id === action.payload.id
+          ? { ...product, userStars: action.payload.userStars }
+          : product
+      );
     default:
       return statePart;
   }
