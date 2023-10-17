@@ -4,27 +4,38 @@ import styles from './FeaturedProduct.module.scss';
 import { useState } from 'react';
 import { getProductsWithImages } from '../../../redux/productsRedux';
 import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 
 const FeaturedProduct = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const products = useSelector(getProductsWithImages);
   const images = products.map(product => product.img);
+  const [transition, setTransition] = useState(false);
 
   const previous = e => {
     e.preventDefault();
-    setCurrentSlide((currentSlide - 1 + images.length) % images.length);
+    setTransition(true);
+    setTimeout(() => {
+      setCurrentSlide((currentSlide - 1 + images.length) % images.length);
+      setTransition(false);
+    }, 500);
   };
 
   const next = e => {
     e.preventDefault();
-    setCurrentSlide((currentSlide + 1) % images.length);
+    setTransition(true);
+    setTimeout(() => {
+      setCurrentSlide((currentSlide + 1) % images.length);
+      setTransition(false);
+    }, 500);
   };
 
   return (
-    <div
-      className={styles.featuredProduct}
-      style={{ backgroundImage: `url(${images[currentSlide]})` }}
-    >
+    <div className={styles.featuredProduct}>
+      <div
+        className={clsx(styles.backgroundImage, transition ? styles.hidden : '')}
+        style={{ backgroundImage: `url(${images[currentSlide]})` }}
+      ></div>
       <div className={styles.featuredProduct_inner}>
         <p>
           INDOOR <span>FURNITURE</span>
