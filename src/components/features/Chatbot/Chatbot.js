@@ -31,6 +31,7 @@ const Chatbot = () => {
   };
 
   const handleUserInput = () => {
+    console.log('inputText:', inputText);
     if (inputText.trim() !== '') {
       addMessage(inputText, true);
       setInputText('');
