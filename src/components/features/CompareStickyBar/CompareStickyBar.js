@@ -28,19 +28,15 @@ const CompareStickyBar = () => {
     <div className={styles.compareStickyBar}>
       {comparedProducts.map(product => (
         <div key={product.id} className={styles.product}>
-          <img src={product.img} alt={product.name} />
-          <FontAwesomeIcon
-            icon={faTimes}
-            className={styles.closeIcon}
+          <img
+            src={product.img}
+            alt={product.name}
             onClick={() => handleRemoveFromComparison(product.id)}
           />
+          <FontAwesomeIcon icon={faTimes} className={styles.closeIcon} />
         </div>
       ))}
-      <Button
-        variant='small'
-        onClick={() => console.log('Button Compare was clicked')}
-        disabled={comparedProducts.length === 0}
-      >
+      <Button variant='small' disabled={comparedProducts.length === 0}>
         <FontAwesomeIcon icon={faExchangeAlt} />
         Compare
       </Button>

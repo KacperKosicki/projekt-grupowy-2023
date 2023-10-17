@@ -13,10 +13,11 @@ import { faStar as farStar, faHeart } from '@fortawesome/free-regular-svg-icons'
 import Button from '../Button/Button';
 import { toggleProductFavorite } from '../../../redux/productsRedux';
 import { toggleToCompare, getComparedProducts } from '../../../redux/productsRedux';
-import CompareStickyBar from '../../layout/CompareStickyBar/CompareStickyBar';
+import CompareStickyBar from '../../features/CompareStickyBar/CompareStickyBar';
 
 const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison }) => {
   const dispatch = useDispatch();
+  console.log(comparison);
 
   const toggleFavorite = e => {
     e.preventDefault();
@@ -71,8 +72,8 @@ const ProductBox = ({ name, price, promo, stars, isFavorite, id, img, comparison
           </Button>
           <Button
             variant='outline'
-            className={clsx(comparison && styles.icon_selected)}
             onClick={handleToggleToCompare}
+            className={clsx(comparison && styles.icon_selected)}
           >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
