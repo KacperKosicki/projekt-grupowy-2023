@@ -6,7 +6,7 @@ import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
 import Swipeable from '../Swipeable/Swipeable';
 
-function NewFurniture({ categories, products, screenMode, productsPerPage }) {
+const NewFurniture = ({ categories, products, screenMode, productsPerPage }) => {
   const [activePage, setActivePage] = useState(0);
   const [activeCategory, setActiveCategory] = useState('bed');
   const [pagesCount, setPagesCount] = useState(0);
@@ -28,7 +28,6 @@ function NewFurniture({ categories, products, screenMode, productsPerPage }) {
   const swipeRight = () => {
     if (activePage === 0) return;
     handlePageChange(activePage - 1);
-
   };
 
   const handlePageChange = newPage => {
@@ -49,7 +48,6 @@ function NewFurniture({ categories, products, screenMode, productsPerPage }) {
   };
 
   const productDisplay = screenMode => {
-
     let number = 8;
     if (screenMode === 'desktop') {
       number = productsPerPage;
@@ -60,8 +58,6 @@ function NewFurniture({ categories, products, screenMode, productsPerPage }) {
     }
     return number;
   };
-
-
 
   const dots = [];
   for (let i = 0; i < pagesCount; i++) {
@@ -105,12 +101,13 @@ function NewFurniture({ categories, products, screenMode, productsPerPage }) {
           </div>
         </div>
         <Swipeable leftAction={swipeLeft} rightAction={swipeRight}>
-          <div
-            className={clsx(styles.galleryImg, transition ? styles.hidden : '')}
-          >
+          <div className={clsx(styles.galleryImg, transition ? styles.hidden : '')}>
             <div className='row'>
               {categoryProducts
-                .slice(activePage * productsPerPage, (activePage + 1) * productDisplay(screenMode))
+                .slice(
+                  activePage * productsPerPage,
+                  (activePage + 1) * productDisplay(screenMode)
+                )
                 .map(item => (
                   <div key={item.id} className='col-sm-6 col-md-4 col-lg-3'>
                     <ProductBox {...item} isFeatured={isFeatured} />
@@ -122,7 +119,7 @@ function NewFurniture({ categories, products, screenMode, productsPerPage }) {
       </div>
     </div>
   );
-}
+};
 
 NewFurniture.propTypes = {
   categories: PropTypes.arrayOf(
