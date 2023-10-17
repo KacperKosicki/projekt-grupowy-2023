@@ -31,21 +31,23 @@ const Chatbot = () => {
   };
 
   const handleUserInput = () => {
-    console.log('inputText:', inputText);
     if (inputText.trim() !== '') {
-      addMessage(inputText, true);
-      setInputText('');
-
       let userInput = inputText.toLowerCase();
 
+      // Usunięcie ewentualnego znaku zapytania na końcu wiadomości
       if (userInput.endsWith('?')) {
         userInput = userInput.slice(0, -1);
       }
 
+      // Sprawdzenie, czy wiadomość użytkownika pasuje do któregoś z kluczy w obiekcie responses
       const matchedKeyword = Object.keys(responses).find(keyword =>
         userInput.includes(keyword.toLowerCase())
       );
 
+      // Dodanie wiadomości użytkownika do tablicy messages
+      addMessage(inputText, true);
+
+      // Dodanie odpowiedzi do tablicy messages
       if (matchedKeyword) {
         addMessage(responses[matchedKeyword], false);
       } else {
@@ -54,6 +56,9 @@ const Chatbot = () => {
           false
         );
       }
+
+      // Wyczyszczenie pola inputText
+      setInputText('');
     }
   };
 
