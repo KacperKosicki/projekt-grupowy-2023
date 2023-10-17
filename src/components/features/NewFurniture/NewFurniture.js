@@ -1,154 +1,127 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import clsx from 'clsx';
-
 import styles from './NewFurniture.module.scss';
 import ProductBox from '../../common/ProductBox/ProductBox';
 import Swipeable from '../Swipeable/Swipeable';
 
-class NewFurniture extends React.Component {
-  state = {
-    activePage: 0,
-    activeCategory: 'bed',
-    pagesCount: 0,
-    categoryProducts: [],
-    transition: false,
+const NewFurniture = ({ categories, products, screenMode, productsPerPage }) => {
+  const [activePage, setActivePage] = useState(0);
+  const [activeCategory, setActiveCategory] = useState('bed');
+  const [pagesCount, setPagesCount] = useState(0);
+  const [categoryProducts, setCategoryProducts] = useState([]);
+  const [transition, setTransition] = useState(false);
+
+  useEffect(() => {
+    const filteredProducts = products.filter(item => item.category === activeCategory);
+    setCategoryProducts(filteredProducts);
+    const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
+    setPagesCount(pageCount);
+  }, [activeCategory, products, productsPerPage]);
+
+  const swipeLeft = () => {
+    if (activePage === pagesCount - 1) return;
+    handlePageChange(activePage + 1);
   };
 
-  constructor(props) {
-    super(props);
-    this.state.categoryProducts = props.products.filter(
-      item => item.category === this.state.activeCategory
-    );
-    const pagesCount = Math.ceil(
-      this.state.categoryProducts.length / this.props.productsPerPage
-    );
-    this.state.pagesCount = pagesCount;
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.products !== this.props.products) {
-      const categoryProducts = this.props.products.filter(
-        item => item.category === this.state.activeCategory
-      );
-
-      this.setState({
-        categoryProducts: categoryProducts,
-      });
-    }
-  }
-
-  swipeLeft = () => {
-    if (this.state.activePage === this.state.pagesCount - 1) return;
-    this.handlePageChange(this.state.activePage + 1);
+  const swipeRight = () => {
+    if (activePage === 0) return;
+    handlePageChange(activePage - 1);
   };
 
-  swipeRight = () => {
-    if (this.state.activePage === 0) return;
-    this.handlePageChange(this.state.activePage - 1);
-  };
-
-  handlePageChange(newPage) {
-    this.setState({ transition: true });
+  const handlePageChange = newPage => {
+    setTransition(true);
     setTimeout(() => {
-      this.setState({ activePage: newPage });
-      this.setState({ transition: false });
+      setActivePage(newPage);
+      setTransition(false);
     }, 500);
-  }
+  };
 
-  handleCategoryChange(newCategory) {
-    this.setState({ transition: true });
+  const handleCategoryChange = newCategory => {
+    setTransition(true);
     setTimeout(() => {
-      this.setState({ activeCategory: newCategory });
-      this.setState({ transition: false });
-      this.setState({ activePage: 0 });
+      setActiveCategory(newCategory);
+      setTransition(false);
+      setActivePage(0);
     }, 500);
-  }
+  };
 
-  productDisplay(screenMode) {
+  const productDisplay = screenMode => {
     let number = 8;
     if (screenMode === 'desktop') {
-      number = this.props.productsPerPage;
+      number = productsPerPage;
     } else if (screenMode === 'tablet') {
       number = 3;
     } else if (screenMode === 'mobile') {
       number = 2;
     }
     return number;
-  }
+  };
 
-  render() {
-    const { categories, screenMode, productsPerPage } = this.props;
-
-    const { activeCategory, activePage, transition } = this.state;
-
-    const dots = [];
-    for (let i = 0; i < this.state.pagesCount; i++) {
-      dots.push(
-        <li key={i}>
-          <a
-            onClick={() => this.handlePageChange(i)}
-            className={i === activePage ? styles.active : ''}
-          >
-            page {i}
-          </a>
-        </li>
-      );
-    }
-    const isFeatured = false;
-
-    return (
-      <div className={styles.root}>
-        <div className='container'>
-          <div className={styles.panelBar}>
-            <div className='row no-gutters align-items-end'>
-              <div className={'col-auto ' + styles.heading}>
-                <h3>New furniture</h3>
-              </div>
-              <div className={'col ' + styles.menu}>
-                <ul>
-                  {categories.map(item => (
-                    <li key={item.id}>
-                      <a
-                        className={item.id === activeCategory ? styles.active : ''}
-                        onClick={() => this.handleCategoryChange(item.id)}
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className={'col-auto ' + styles.dots}>
-                <ul>{dots}</ul>
-              </div>
-            </div>
-          </div>
-          <Swipeable leftAction={this.swipeLeft} rightAction={this.swipeRight}>
-            <div className={clsx(styles.galleryImg, transition ? styles.hidden : '')}>
-              <div className='row'>
-                {this.state.categoryProducts
-                  .slice(
-                    activePage * productsPerPage,
-                    (activePage + 1) * this.productDisplay(screenMode)
-                  )
-                  .map(item => (
-                    <div key={item.id} className='col-sm-6 col-md-4 col-lg-3'>
-                      <ProductBox {...item} isFeatured={isFeatured} />
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </Swipeable>
-        </div>
-      </div>
+  const dots = [];
+  for (let i = 0; i < pagesCount; i++) {
+    dots.push(
+      <li key={i}>
+        <a
+          onClick={() => handlePageChange(i)}
+          className={i === activePage ? styles.active : ''}
+        >
+          page {i}
+        </a>
+      </li>
     );
   }
-}
+  const isFeatured = false;
+  return (
+    <div className={styles.root}>
+      <div className='container'>
+        <div className={styles.panelBar}>
+          <div className='row no-gutters align-items-end'>
+            <div className={`col-auto ${styles.heading}`}>
+              <h3>New furniture</h3>
+            </div>
+            <div className={`col ${styles.menu}`}>
+              <ul>
+                {categories.map(item => (
+                  <li key={item.id}>
+                    <a
+                      className={item.id === activeCategory ? styles.active : ''}
+                      onClick={() => handleCategoryChange(item.id)}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={`col-auto ${styles.dots}`}>
+              <ul>{dots}</ul>
+            </div>
+          </div>
+        </div>
+        <Swipeable leftAction={swipeLeft} rightAction={swipeRight}>
+          <div className={clsx(styles.galleryImg, transition ? styles.hidden : '')}>
+            <div className='row'>
+              {categoryProducts
+                .slice(
+                  activePage * productsPerPage,
+                  (activePage + 1) * productDisplay(screenMode)
+                )
+                .map(item => (
+                  <div key={item.id} className='col-sm-6 col-md-4 col-lg-3'>
+                    <ProductBox {...item} isFeatured={isFeatured} />
+                  </div>
+                ))}
+            </div>
+          </div>
+        </Swipeable>
+      </div>
+    </div>
+  );
+};
 
 NewFurniture.propTypes = {
-  children: PropTypes.node,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -183,5 +156,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(NewFurniture);
-
-//export default NewFurniture;
