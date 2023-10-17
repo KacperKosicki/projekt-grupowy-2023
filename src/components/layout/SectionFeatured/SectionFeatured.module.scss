@@ -1,7 +1,5 @@
 @import "../../../styles/settings.scss";
 
-.root {
-
   .featured {
     display: flex;
     justify-content: space-between;
@@ -10,54 +8,4 @@
     margin-top: 30px;
     gap: 20px;
 
-    .featuredCard {
-      width: 30%;
-      position: relative;
-      top: 4%;
-
-      .deals {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 16px;
-        background-color: #292929;
-
-        p {
-          margin: 0;
-          color: #e1e1e1;
-        }
-      }
-
-        .dots {
-          display: flex;
-
-          ul {
-            margin: 0;
-            list-style: none;
-            display: flex;
-
-            li {
-              display: inline-block;
-              margin-left: 0.5rem;
-
-              a {
-                display: block;
-                width: 13px;
-                height: 13px;
-                border-radius: 6px;
-                background-color: #e1e1e1;
-                font-size: 0;
-
-                &.active,
-                &:hover {
-                  background-color: $primary;
-                }
-              }
-            }
-          }
-        }
-
-    }
   }
-
-}
