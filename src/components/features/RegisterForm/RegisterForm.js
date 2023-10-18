@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './RegisterForm.module.scss';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const RegisterForm = () => {
+  const history = useHistory();
   const [hasAccount, setHasAccount] = useState(false);
+  const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const [checkboxes, setCheckboxes] = useState({
+    acceptTerms: false,
+    receiveNewsletter: false,
+    selectAll: false,
+  });
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -17,19 +25,9 @@ const RegisterForm = () => {
     confirmPassword: '',
   });
 
-  const [errors, setErrors] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
-
-  const [checkboxes, setCheckboxes] = useState({
-    acceptTerms: false,
-    receiveNewsletter: false,
-    selectAll: false,
-  });
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -41,10 +39,6 @@ const RegisterForm = () => {
     setCheckboxes({ ...checkboxes, [name]: checked });
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
   const handleSelectAll = () => {
     setCheckboxes({
       ...checkboxes,
@@ -54,53 +48,37 @@ const RegisterForm = () => {
     });
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-
-    // Walidacja imienia
-    if (formData.firstName.length < 3 || formData.firstName.length > 30) {
-      newErrors.firstName = 'Imię powinno mieć od 3 do 30 znaków';
-    }
-
-    // Walidacja nazwiska
-    if (formData.lastName.length < 3 || formData.lastName.length > 30) {
-      newErrors.lastName = 'Nazwisko powinno mieć od 3 do 30 znaków';
-    }
-
-    // Walidacja adresu email
-    if (!formData.email.includes('@')) {
-      newErrors.email = 'Nieprawidłowy adres email';
-    }
-
-    // Walidacja hasła
-    if (formData.password.length < 3) {
-      newErrors.password = 'Hasło musi mieć co najmniej 3 znaki';
-    }
-
-    // Walidacja potwierdzenia hasła
-    if (formData.confirmPassword !== formData.password) {
-      newErrors.confirmPassword = 'Hasła nie pasują do siebie';
-    }
-
-    // Ustawienie błędów
-    setErrors(prevErrors => ({
-      ...prevErrors,
-      ...newErrors,
-    }));
-
-    // Jeśli nie ma żadnych błędów, zwróć true, w przeciwnym razie false
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleSubmit = event => {
     event.preventDefault();
-    const isValid = validateForm();
+    const validationErrors = {};
+    if (formData.firstName.length < 3 || formData.firstName.length > 30) {
+      validationErrors.firstName = 'Imię musi mieć od 3 do 30 znaków!';
+    }
+    if (formData.lastName.length < 3 || formData.lastName.length > 30) {
+      validationErrors.lastName = 'Nazwisko musi mieć od 3 do 30 znaków!';
+    }
+    if (!formData.email.includes('@')) {
+      validationErrors.email = 'Nieprawidłowy adres email!';
+    }
+    if (formData.password.length < 3) {
+      validationErrors.password = 'Hasło musi mieć przynajmniej 3 znaki!';
+    }
+    if (formData.password !== formData.confirmPassword) {
+      validationErrors.confirmPassword =
+        'Hasło i potwierdzenie hasła muszą być identyczne!';
+    }
+    if (!checkboxes.acceptTerms) {
+      validationErrors.acceptTerms = 'Musisz zaakceptować warunki regulaminu!';
+    }
 
-    if (isValid) {
-      // Tutaj dodaj logikę rejestracji, np. wysyłkę danych na serwer.
-      // FormData i checkboxes zawierają aktualne dane wprowadzone przez użytkownika.
-      // Następnie przekieruj użytkownika na stronę główną.
-      // history.push('/');
+    if (Object.keys(validationErrors).length === 0) {
+      // Tutaj można dodać logikę rejestracji, np. wysyłkę danych na serwer.
+      // FormData zawiera poprawne dane wprowadzone przez użytkownika.
+      console.log('Formularz jest poprawny. Dane do rejestracji:', formData);
+      // Tutaj możesz przekierować użytkownika do innej strony, na przykład strony głównej.
+      history.push('/');
+    } else {
+      setErrors(validationErrors);
     }
   };
 
@@ -131,8 +109,6 @@ const RegisterForm = () => {
             </Col>
           </Form.Group>
 
-          <h6 className='mt-5 mb-1'>Podaj dane do rejestracji</h6>
-
           <Form.Group controlId='firstName' className='my-3'>
             <Form.Control
               placeholder='Imię *'
@@ -142,7 +118,9 @@ const RegisterForm = () => {
               onChange={handleInputChange}
               required
             />
-            <Form.Text className='text-danger'>{errors.firstName}</Form.Text>
+            {errors.firstName && (
+              <span className={styles.error}>{errors.firstName}</span>
+            )}
           </Form.Group>
 
           <Form.Group controlId='lastName' className='my-3'>
@@ -154,7 +132,7 @@ const RegisterForm = () => {
               onChange={handleInputChange}
               required
             />
-            <Form.Text className='text-danger'>{errors.lastName}</Form.Text>
+            {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
           </Form.Group>
 
           <Form.Group controlId='email' className='my-3'>
@@ -166,10 +144,10 @@ const RegisterForm = () => {
               onChange={handleInputChange}
               required
             />
-            <Form.Text className='text-danger'>{errors.email}</Form.Text>
+            {errors.email && <span className={styles.error}>{errors.email}</span>}
           </Form.Group>
 
-          <Form.Group controlId='password'>
+          <Form.Group controlId='password' className='my-3'>
             <Form.Control
               placeholder='Hasło *'
               type={showPassword ? 'text' : 'password'}
@@ -178,6 +156,7 @@ const RegisterForm = () => {
               onChange={handleInputChange}
               required
             />
+            {errors.password && <span className={styles.error}>{errors.password}</span>}
           </Form.Group>
 
           <Form.Group controlId='confirmPassword' className='my-3'>
@@ -189,7 +168,9 @@ const RegisterForm = () => {
               onChange={handleInputChange}
               required
             />
-            <Form.Text className='text-danger'>{errors.confirmPassword}</Form.Text>
+            {errors.confirmPassword && (
+              <span className={styles.error}>{errors.confirmPassword}</span>
+            )}
             <Row className='mt-3'>
               <Col sm='6'></Col>
               <Col sm='6' className='d-flex justify-content-end'>
@@ -225,6 +206,9 @@ const RegisterForm = () => {
               checked={checkboxes.acceptTerms}
               onChange={handleCheckboxChange}
             />
+            {errors.acceptTerms && (
+              <span className={styles.error}>{errors.acceptTerms}</span>
+            )}
 
             <Form.Check
               type='checkbox'
@@ -241,11 +225,9 @@ const RegisterForm = () => {
               <NavLink to='/'>&lt;Wróć</NavLink>
             </Col>
             <Col sm='6' className='d-flex justify-content-end'>
-              <NavLink to='/'>
-                <Button variant='primary' type='submit'>
-                  Zarejestruj się
-                </Button>
-              </NavLink>
+              <Button variant='primary' type='submit'>
+                Zarejestruj się
+              </Button>
             </Col>
           </Row>
         </Form>
