@@ -3,27 +3,25 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { getAll } from '../../../redux/brandsRedux';
-import { getScreenMode } from '../../../redux/screenModeRedux';
 
 const Brands = () => {
   const brands = useSelector(state => getAll(state));
-  const screenMode = useSelector(state => getScreenMode(state));
   const [startPoint, setStartPoint] = useState(0);
   const [brandsToDisplay, setBrandsToDisplay] = useState([]);
-
   const [slidesPerPage, setSlidesPerPage] = useState(0);
 
-  useEffect(() => {
-    if (screenMode === 'desktop') {
-      setSlidesPerPage(6);
-    } else if (screenMode === 'tablet') {
-      setSlidesPerPage(3);
-    } else if (screenMode === 'mobile') {
-      setSlidesPerPage(2);
-    }
-  }, [screenMode]);
-
   const brandsCount = brands.length;
+
+  const calculateSlidesPerPage = () => {
+    const windowWidth = window.innerWidth;
+    if (windowWidth >= 992) {
+      return 6;
+    } else if (windowWidth >= 768 && windowWidth < 992) {
+      return 3;
+    } else {
+      return 2;
+    }
+  };
 
   const handleNextSlideChange = () => {
     setStartPoint((startPoint + slidesPerPage) % brandsCount);
@@ -36,6 +34,10 @@ const Brands = () => {
     }
     setStartPoint(newPage);
   };
+
+  useEffect(() => {
+    setSlidesPerPage(calculateSlidesPerPage());
+  }, []);
 
   useEffect(() => {
     const calculateEndPoint = () => {
@@ -56,6 +58,19 @@ const Brands = () => {
 
     calculateEndPoint();
   }, [startPoint, brandsCount, brands, slidesPerPage]);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setSlidesPerPage(calculateSlidesPerPage());
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
   return (
     <div className={styles.root}>
       <div className='container'>
