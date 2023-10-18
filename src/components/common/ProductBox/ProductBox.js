@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import styles from './ProductBox.module.scss';
@@ -52,7 +53,9 @@ const ProductBox = props => {
     <div className={rootClassName}>
       <div className={styles.photo}>
         {promo && <div className={styles.sale}>{promo}</div>}
-        <img className={styles.img} src={img} alt={name} />
+        <Link to={`/product/${id}`}>
+          <img className={styles.img} src={img} alt={name} />
+        </Link>
         <div className={styles.buttons}>
           <Button variant='small' onClick={handleShowPopup}>
             Quick View
@@ -96,7 +99,9 @@ const ProductBox = props => {
         )}
       </div>
       <div className={styles.content}>
-        <h5>{name}</h5>
+        <h5>
+          <Link to={`/product/${id}`}>{name}</Link>
+        </h5>
         <Stars stars={stars} userStars={userStars} id={id} />
       </div>
       <div className={styles.line}></div>

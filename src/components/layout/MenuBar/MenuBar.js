@@ -19,24 +19,24 @@ const MenuBar = ({ children }) => (
               <Navbar.Collapse id='basic-navbar-nav' className='p-0'>
                 <Nav className='me-auto'>
                   <Nav.Link
-                    href='#home'
+                    href='/'
                     className={`px-4 ${styles.active} ${styles.nav}`}
                   >
                     Home
                   </Nav.Link>
-                  <Nav.Link href='#' className={'px-4 ' + styles.nav}>
+                  <Nav.Link href='/shop/furniture' className={'px-4 ' + styles.nav}>
                     Furniture
                   </Nav.Link>
-                  <Nav.Link href='#' className={'px-4 ' + styles.nav}>
+                  <Nav.Link href='/shop/chair' className={'px-4 ' + styles.nav}>
                     Chair
                   </Nav.Link>
-                  <Nav.Link href='#' className={'px-4 ' + styles.nav}>
+                  <Nav.Link href='/shop/table' className={'px-4 ' + styles.nav}>
                     Table
                   </Nav.Link>
-                  <Nav.Link href='#' className={'px-4 ' + styles.nav}>
+                  <Nav.Link href='/shop/bedroom' className={'px-4 ' + styles.nav}>
                     Bedroom
                   </Nav.Link>
-                  <Nav.Link href='#' className={'px-4 ' + styles.nav}>
+                  <Nav.Link href='/blog' className={'px-4 ' + styles.nav}>
                     Blog
                   </Nav.Link>
                 </Nav>

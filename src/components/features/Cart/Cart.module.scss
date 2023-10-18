@@ -1,0 +1,191 @@
+@import "../../../styles/settings.scss";
+
+.root {
+
+  .header {
+    width: 100%;
+    height: 100px;
+    background: $textarea-chat;
+    font-size: 20px;
+    padding: 40px 100px 40px 100px;
+    margin-bottom: 40px;
+
+    .home {
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .iconHouse {
+      margin-right: 5px;
+    }
+  }
+
+  .cart {
+    margin: 20px auto;
+    padding: 0 100px;
+
+    .tableCart {
+      border-right: 1px solid $textarea-chat;
+    }
+
+    .tableHead {
+      text-transform: uppercase;
+      opacity: 0.7;
+
+    }
+
+    .firstCol {
+      width: 10%;
+      background: $textarea-chat;
+    }
+
+    .secondCol {
+      width: 10%;
+      background: $textarea-chat;
+    }
+
+    .thirdCol {
+      width: 40%;
+      background: $textarea-chat;
+    }
+
+    .fourthCol {
+      width: 10%;
+      background: $textarea-chat;
+    }
+
+    .fifthCol {
+      width: 20%;
+      background: $textarea-chat;
+    }
+
+    .sixthCol {
+      width: 10%;
+      background: $textarea-chat;
+    }
+
+    .mark {
+      width: 25px;
+      height: 25px;
+      margin-top: 15px;
+    }
+
+    .product {
+      margin-top: 15px;
+    }
+
+    .photo {
+      width: 50px;
+      height: 50px;
+      background: $textarea-chat;
+    }
+
+    .price {
+      color: rgb(143, 211, 42);
+      margin-top: 15px;
+    }
+
+    .quantity {
+      margin-top: 10px;
+      display: flex;
+
+      input {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        border-top: none;
+        border-left: none;
+      }
+
+      button {
+        width: 30px;
+        height: 30px;
+        background-color: $text-white;
+        border-top: none;
+        border-left: none;
+        opacity: 0.6;
+      }
+
+      .leftButton {
+        border-right: none;
+      }
+    }
+
+    .total {
+      color: rgb(143, 211, 42);
+      margin-top: 15px;
+    }
+
+    .coupon {
+      display: flex;
+
+      input {
+        margin-right: 10px;
+        opacity: 0.6;
+        width: 180px;
+        font-size: 15px;
+      }
+    }
+  }
+
+  .button {
+    background: $primary;
+    text-transform: uppercase;
+    font-size: 15px;
+    border: none;
+    color: $background-chat;
+    padding: 8px 20px
+  }
+
+  .cartTotal {
+    margin: 0 auto;
+    padding: 0 100px 0 50%;
+
+    .tableTotal {
+      border-right: 1px solid $textarea-chat;
+    }
+
+    .subtotal {
+      border-right: 1px solid $textarea-chat;
+      font-weight: bold;
+      opacity: 0.7;
+    }
+
+    .tableHeadTotal {
+      opacity: 0.7;
+
+      .firstColTotal {
+        background: $textarea-chat;
+        width: 40%;
+      }
+
+      .secondColTotal {
+        background: $textarea-chat;
+        width: 55%;
+      }
+
+      .thirdColTotal {
+        background: $textarea-chat;
+        width: 5%;
+      }
+    }
+
+    .proceed {
+      margin: 10px 0 10px;
+      background: $primary;
+      text-transform: uppercase;
+      font-size: 15px;
+      border: none;
+      color: $background-chat;
+      padding: 8px 170px
+    }
+
+    .empty {
+      border-bottom: none;
+    }
+
+    .price {
+      color: rgb(143, 211, 42);
+    }
+  }
+}
