@@ -56,6 +56,7 @@ const NewFurniture = ({ categories, products, screenMode, productsPerPage }) => 
     } else if (screenMode === 'mobile') {
       number = 2;
     }
+
     return number;
   };
 
