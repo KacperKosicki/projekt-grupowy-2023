@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import ProductSearch from '../../features/ProductSearch/ProductSearch';
 
@@ -19,24 +20,51 @@ const MenuBar = ({ children }) => (
               <Navbar.Collapse id='basic-navbar-nav' className='p-0'>
                 <Nav className='me-auto'>
                   <Nav.Link
-                    href='/'
-                    className={`px-4 ${styles.active} ${styles.nav}`}
+                    as={NavLink}
+                    to='/'
+                    className={'px-4 ' + styles.nav}
+                    activeClassName={styles.active}
                   >
                     Home
                   </Nav.Link>
-                  <Nav.Link href='/shop/furniture' className={'px-4 ' + styles.nav}>
+                  <Nav.Link
+                    as={NavLink}
+                    to='/shop/furniture'
+                    className={'px-4 ' + styles.nav}
+                    activeClassName={styles.active}
+                  >
                     Furniture
                   </Nav.Link>
-                  <Nav.Link href='/shop/chair' className={'px-4 ' + styles.nav}>
+                  <Nav.Link
+                    as={NavLink}
+                    to='/shop/chair'
+                    className={'px-4 ' + styles.nav}
+                    activeClassName={styles.active}
+                  >
                     Chair
                   </Nav.Link>
-                  <Nav.Link href='/shop/table' className={'px-4 ' + styles.nav}>
+                  <Nav.Link
+                    as={NavLink}
+                    to='/shop/table'
+                    className={'px-4 ' + styles.nav}
+                    activeClassName={styles.active}
+                  >
                     Table
                   </Nav.Link>
-                  <Nav.Link href='/shop/bedroom' className={'px-4 ' + styles.nav}>
+                  <Nav.Link
+                    as={NavLink}
+                    to='/shop/bedroom'
+                    className={'px-4 ' + styles.nav}
+                    activeClassName={styles.active}
+                  >
                     Bedroom
                   </Nav.Link>
-                  <Nav.Link href='/blog' className={'px-4 ' + styles.nav}>
+                  <Nav.Link
+                    as={NavLink}
+                    to='/blog'
+                    className={'px-4 ' + styles.nav}
+                    activeClassName={styles.active}
+                  >
                     Blog
                   </Nav.Link>
                 </Nav>
