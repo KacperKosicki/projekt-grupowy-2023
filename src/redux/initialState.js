@@ -664,6 +664,22 @@ const initialState = {
       content:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices tristique tellus, eget sollicitudin mauris porta sed. Curabitur vestibulum feugiat ligula, vitae mollis urna finibus vel.',
     },
+    {
+      id: 2,
+      name: 'John Smith II',
+      img: '/images/feedback/client-1.jpg',
+      category: 'Furniture client',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices tristique tellus, eget sollicitudin mauris porta sed. Curabitur vestibulum feugiat ligula, vitae mollis urna finibus vel.',
+    },
+    {
+      id: 3,
+      name: 'John Smith III',
+      img: '/images/feedback/client-1.jpg',
+      category: 'Furniture client',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices tristique tellus, eget sollicitudin mauris porta sed. Curabitur vestibulum feugiat ligula, vitae mollis urna finibus vel.',
+    },
   ],
 };
 

@@ -4,9 +4,48 @@ import { useSelector } from 'react-redux';
 import { getAll } from '../../../redux/feedbackRedux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteRight } from '@fortawesome/free-solid-svg-icons';
+import Swipeable from '../../features/Swipeable/Swipeable';
+import { useState } from 'react';
+import clsx from 'clsx';
 
 const Feedback = () => {
   const feedbackList = useSelector(state => getAll(state));
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [transition, setTransition] = useState(false);
+
+  const swipeLeft = () => {
+    setTransition(true);
+    console.log('left');
+    setTimeout(() => {
+      setCurrentIndex((currentIndex + 1) % feedbackList.length);
+      setTransition(false);
+    }, 500);
+  };
+
+  const swipeRight = () => {
+    setTransition(true);
+    console.log('reight');
+    setTimeout(() => {
+      setCurrentIndex((currentIndex - 1 + feedbackList.length) % feedbackList.length);
+      setTransition(false);
+    }, 500);
+  };
+
+  const currentFeedback = feedbackList[currentIndex];
+
+  // const dots = [];
+  // for (let i = 0; i < feedbackList.length; i++) {
+  //   dots.push(
+  //     <li key={i}>
+  //       <a
+  //         onClick={() => handlePageChange(i)}
+  //         className={i === activePage ? styles.active : ''}
+  //       >
+  //         page {i}
+  //       </a>
+  //     </li>
+  //   );
+  // }
 
   return (
     <div className={styles.root}>
@@ -31,28 +70,32 @@ const Feedback = () => {
             </div>
           </div>
         </div>
-        <div className={styles.feedback}>
-          <div className={styles.icon}>
-            <FontAwesomeIcon icon={faQuoteRight} />
-          </div>
-          <div className={styles.content}>
-            <p>{feedbackList[0].content}</p>
-          </div>
-          <div className={styles.author}>
-            <div className={styles.picture}>
-              <img
-                key={feedbackList[0].id}
-                className={styles.brandImg}
-                src={feedbackList[0].img}
-                alt={feedbackList[0].name}
-              />
+        <Swipeable leftAction={swipeLeft} rightAction={swipeRight}>
+          <div className={clsx(styles.galleryImg, transition ? styles.hidden : '')}>
+            <div className={styles.feedback}>
+              <div className={styles.icon}>
+                <FontAwesomeIcon icon={faQuoteRight} />
+              </div>
+              <div className={styles.content}>
+                <p>{currentFeedback.content}</p>
+              </div>
+              <div className={styles.author}>
+                <div className={styles.picture}>
+                  <img
+                    key={currentFeedback.id}
+                    className={styles.brandImg}
+                    src={currentFeedback.img}
+                    alt={currentFeedback.name}
+                  />
+                </div>
+                <div className={styles.name}>
+                  <p className={styles.authorName}>{currentFeedback.name}</p>
+                  <p>{currentFeedback.category}</p>
+                </div>
+              </div>
             </div>
-            <div className={styles.name}>
-              <p className={styles.authorName}>{feedbackList[0].name}</p>
-              <p>{feedbackList[0].category}</p>
-            </div>
           </div>
-        </div>
+        </Swipeable>
       </div>
     </div>
   );
