@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBan,
@@ -9,6 +9,7 @@ import {
 import styles from './Chatbot.module.scss';
 
 const Chatbot = () => {
+  const messagesRef = useRef(null);
   const [messages, setMessages] = useState([
     { text: 'Witaj! W czym mogę pomóc?', isUser: false },
   ]);
@@ -26,44 +27,59 @@ const Chatbot = () => {
     'metody płatności': 'Za meble można zapłacić przelewem i przy odbiorze',
   };
 
+  const scrollToBottom = () => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    // Przewiń okno czatu na dół po każdej aktualizacji wiadomości
+    scrollToBottom();
+  }, [messages]);
+
   const addMessage = (message, isUser = false) => {
     setMessages([...messages, { text: message, isUser }]);
   };
 
   const handleUserInput = () => {
     if (inputText.trim() !== '') {
-      let userInput = inputText.toLowerCase();
+      console.log('Wiadomość od użytkownika:', inputText);
 
-      // Usunięcie ewentualnego znaku zapytania na końcu wiadomości
+      const userMessage = { text: inputText, isUser: true }; // Tworzymy obiekt reprezentujący wiadomość użytkownika
+      const newMessages = [...messages, userMessage]; // Tworzymy nową tablicę wiadomości, dodając wiadomość użytkownika
+
+      // Sprawdzamy, czy wiadomość użytkownika pasuje do któregoś z kluczy w obiekcie responses
+      let userInput = inputText.toLowerCase();
       if (userInput.endsWith('?')) {
         userInput = userInput.slice(0, -1);
       }
-
-      // Sprawdzenie, czy wiadomość użytkownika pasuje do któregoś z kluczy w obiekcie responses
       const matchedKeyword = Object.keys(responses).find(keyword =>
         userInput.includes(keyword.toLowerCase())
       );
 
-      // Dodanie wiadomości użytkownika do tablicy messages
-      addMessage(inputText, true);
-
-      // Dodanie odpowiedzi do tablicy messages
+      // Dodanie odpowiedzi bota do tablicy wiadomości
       if (matchedKeyword) {
-        addMessage(responses[matchedKeyword], false);
+        const botMessage = { text: responses[matchedKeyword], isUser: false };
+        const updatedMessages = [...newMessages, botMessage];
+        setMessages(updatedMessages);
       } else {
-        addMessage(
-          'W takim przypadku proponuję kontakt z naszym pracownikiem. Czy mogę pomóc w czymś jeszcze?',
-          false
-        );
+        const errorMessage = {
+          text:
+            'W takim przypadku proponuję kontakt z naszym pracownikiem. Czy mogę pomóc w czymś jeszcze?',
+          isUser: false,
+        };
+        const updatedMessages = [...newMessages, errorMessage];
+        setMessages(updatedMessages);
       }
 
-      // Wyczyszczenie pola inputText
-      setInputText('');
+      setInputText(''); // Czyścimy pole inputText
     }
   };
 
   const handleFormSubmit = e => {
     e.preventDefault();
+    console.log('Formularz został przesłany');
     handleUserInput();
   };
 
@@ -83,7 +99,7 @@ const Chatbot = () => {
               onClick={toggleChat}
             />
           </div>
-          <div className={styles.chatbotMessages}>
+          <div className={styles.chatbotMessages} ref={messagesRef}>
             {messages.map((message, index) => (
               <div
                 key={index}
