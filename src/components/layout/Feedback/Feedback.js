@@ -14,8 +14,8 @@ const Feedback = () => {
   const [transition, setTransition] = useState(false);
 
   const swipeLeft = () => {
+    if (currentIndex === feedbackList.length - 1) return;
     setTransition(true);
-    console.log('left');
     setTimeout(() => {
       setCurrentIndex((currentIndex + 1) % feedbackList.length);
       setTransition(false);
@@ -23,8 +23,8 @@ const Feedback = () => {
   };
 
   const swipeRight = () => {
+    if (currentIndex === 0) return;
     setTransition(true);
-    console.log('reight');
     setTimeout(() => {
       setCurrentIndex((currentIndex - 1 + feedbackList.length) % feedbackList.length);
       setTransition(false);
@@ -33,19 +33,19 @@ const Feedback = () => {
 
   const currentFeedback = feedbackList[currentIndex];
 
-  // const dots = [];
-  // for (let i = 0; i < feedbackList.length; i++) {
-  //   dots.push(
-  //     <li key={i}>
-  //       <a
-  //         onClick={() => handlePageChange(i)}
-  //         className={i === activePage ? styles.active : ''}
-  //       >
-  //         page {i}
-  //       </a>
-  //     </li>
-  //   );
-  // }
+  const dots = [];
+  for (let i = 0; i < feedbackList.length; i++) {
+    dots.push(
+      <li key={i}>
+        <a
+          onClick={() => setCurrentIndex(i)}
+          className={i === currentIndex ? styles.active : ''}
+        >
+          page {i}
+        </a>
+      </li>
+    );
+  }
 
   return (
     <div className={styles.root}>
@@ -57,15 +57,7 @@ const Feedback = () => {
             </div>
             <div className={'col-auto ' + styles.dots}>
               <ul>
-                <li>
-                  <a>page</a>
-                </li>
-                <li>
-                  <a>page</a>
-                </li>
-                <li>
-                  <a>page</a>
-                </li>
+                <ul>{dots}</ul>
               </ul>
             </div>
           </div>
