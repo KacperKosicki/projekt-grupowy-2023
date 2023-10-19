@@ -1,3 +1,5 @@
+@import "../../../styles/settings.scss";
+
 .root {
   padding: $base-padding 0;
 .radio {
@@ -17,28 +19,33 @@
       height: 494px;
       background-color: #f4f5f7;
 
-      .galery {
-        position: relative;
-      }
     }
 
-    .ImageGalery {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 10px;
+    .gallery {
+      position: relative;
 
-      .photo {
-        width: 89px;
-        height: 104px;
-        background-color: #f4f5f7;
+      .ImageGalery {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+
+        .photo {
+          width: 89px;
+          height: 104px;
+          background-color: #f4f5f7;
+        }
       }
-    }
 
-    .arrows {
-      display: flex;
-      justify-content: space-between;
+      .arrowsContainer {
+        position: absolute;
+        width: 100%;
+        top: 40%;
+
+        .arrows {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
     }
   }
-
-
 }

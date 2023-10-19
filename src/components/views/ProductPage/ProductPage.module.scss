@@ -3,41 +3,8 @@
 .root {
   padding: $base-padding 0;
 
-<<<<<<< HEAD
   .radio {
     color: black;
-=======
-.productContainer {
-  border: 1px solid $product-border-color;
-  padding: 20px 10px;
-
-  .productGalery {
-    margin-right: 10px;
-
-    .productImage {
-      height: 494px;
-      background-color: #f4f5f7;
-    }
-
-    .check {
-      position: relative;
-    }
-
-    .ImageGalery {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 10px;
-
-      .photo {
-        width: 89px;
-        height: 104px;
-        background-color: #f4f5f7;
-      }
-    }
-
-    .arrows {
-      position: absolute;
-    }
->>>>>>> 6547036 (Adjust draft)
   }
+
 }
