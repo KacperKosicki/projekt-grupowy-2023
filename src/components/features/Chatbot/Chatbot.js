@@ -1,21 +1,30 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import styles from './Chatbot.module.scss';
 import {
   faBan,
   faComments,
   faPaperPlane,
   faRetweet,
 } from '@fortawesome/free-solid-svg-icons';
+import styles from './Chatbot.module.scss';
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
-    { text: 'W czym mogę pomóc?', isUser: false },
+    { text: 'Witaj! W czym mogę pomóc?', isUser: false },
   ]);
   const [inputText, setInputText] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const responses = {
+    'cena dostawy': 'Cena dostawy wynosi 50zł',
+    'opcje dostawy': 'Korzystamy z kuriera firmy DPD',
+    'ile produktów': 'Jeden kurier może dostarczyć do 10 produktów.',
+    'czas oczekiwania': 'Czas oczekiwania na produkty wynosi 20 dni',
+    'instrukcje montażu': 'Tak, każdy mebel zawiera instrukcję montażu',
+    gwarancja: 'Tak, meble są objęte 2-letnią gwarancją',
+    zwrot: 'Meble można zwrócić do 14 dni na koszt sklepu',
+    'metody płatności': 'Za meble można zapłacić przelewem i przy odbiorze',
+  };
 
   const addMessage = (message, isUser = false) => {
     setMessages([...messages, { text: message, isUser }]);
@@ -23,9 +32,39 @@ const Chatbot = () => {
 
   const handleUserInput = () => {
     if (inputText.trim() !== '') {
+      let userInput = inputText.toLowerCase();
+
+      // Usunięcie ewentualnego znaku zapytania na końcu wiadomości
+      if (userInput.endsWith('?')) {
+        userInput = userInput.slice(0, -1);
+      }
+
+      // Sprawdzenie, czy wiadomość użytkownika pasuje do któregoś z kluczy w obiekcie responses
+      const matchedKeyword = Object.keys(responses).find(keyword =>
+        userInput.includes(keyword.toLowerCase())
+      );
+
+      // Dodanie wiadomości użytkownika do tablicy messages
       addMessage(inputText, true);
+
+      // Dodanie odpowiedzi do tablicy messages
+      if (matchedKeyword) {
+        addMessage(responses[matchedKeyword], false);
+      } else {
+        addMessage(
+          'W takim przypadku proponuję kontakt z naszym pracownikiem. Czy mogę pomóc w czymś jeszcze?',
+          false
+        );
+      }
+
+      // Wyczyszczenie pola inputText
       setInputText('');
     }
+  };
+
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    handleUserInput();
   };
 
   const toggleChat = () => {
@@ -55,15 +94,17 @@ const Chatbot = () => {
             ))}
           </div>
           <div className={styles.chatbotInput}>
-            <input
-              type='text'
-              placeholder='Wpisz swoje pytanie...'
-              value={inputText}
-              onChange={e => setInputText(e.target.value)}
-            />
-            <button>
-              <FontAwesomeIcon icon={faPaperPlane} onClick={handleUserInput} />
-            </button>
+            <form onSubmit={handleFormSubmit}>
+              <input
+                type='text'
+                placeholder='Wpisz swoje pytanie...'
+                value={inputText}
+                onChange={e => setInputText(e.target.value)}
+              />
+              <button type='submit'>
+                <FontAwesomeIcon icon={faPaperPlane} onClick={handleUserInput} />
+              </button>
+            </form>
           </div>
         </div>
       )}
