@@ -9,6 +9,7 @@ import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-ico
 import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
 import { toggleProductFavorite } from '../../../redux/productsRedux';
+import { addProduct } from '../../../redux/cartRedux';
 import Stars from '../Stars/Stars';
 import { useState } from 'react';
 import Popup from '../../views/Popup/Popup';
@@ -49,6 +50,11 @@ const ProductBox = props => {
     dispatch(toggleProductFavorite(id));
   };
 
+  const addToCart = e => {
+    e.preventDefault();
+    dispatch(addProduct({ id, name, img, price }));
+  };
+
   return (
     <div className={rootClassName}>
       <div className={styles.photo}>
@@ -60,7 +66,7 @@ const ProductBox = props => {
           <Button variant='small' onClick={handleShowPopup}>
             Quick View
           </Button>
-          <Button variant='small'>
+          <Button onClick={addToCart} variant='small'>
             <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
           </Button>
           <Popup
@@ -154,7 +160,6 @@ ProductBox.propTypes = {
   isFeatured: PropTypes.bool,
   category: PropTypes.string,
   oldPrice: PropTypes.number,
-
 };
 
 export default ProductBox;

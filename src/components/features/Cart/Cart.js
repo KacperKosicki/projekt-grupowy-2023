@@ -4,9 +4,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import Table from 'react-bootstrap/Table';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import {
+  getAll,
+  removeCartProduct,
+  removeAllCartProducts,
+} from '../../../redux/cartRedux';
+import { useDispatch } from 'react-redux';
+import Button from '../../common/Button/Button';
 
 const Cart = () => {
+  const dispatch = useDispatch();
+
   const [value, setValue] = useState(0);
+
+  const products = useSelector(getAll);
 
   const handleIncrement = () => {
     setValue(value + 1);
@@ -14,6 +26,16 @@ const Cart = () => {
 
   const handleDecrement = () => {
     setValue(value - 1);
+  };
+
+  const removeProduct = (e, id) => {
+    e.preventDefault();
+    dispatch(removeCartProduct(id));
+  };
+
+  const removeAllProducts = e => {
+    e.preventDefault();
+    dispatch(removeAllCartProducts());
   };
 
   return (
@@ -40,111 +62,48 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <div className='d-flex justify-content-center'>
-                    <FontAwesomeIcon icon={faCircleXmark} className={styles.mark} />
-                  </div>
-                </td>
-                <td>
-                  <div className={styles.photo}></div>
-                </td>
-                <td>
-                  <div className={styles.product}>ProductPlaceholder 1</div>
-                </td>
-                <td>
-                  <div className={styles.price}>$5.00</div>
-                </td>
-                <td>
-                  <div className={styles.quantity}>
-                    <div>
-                      <button onClick={handleDecrement} className={styles.leftButton}>
-                        -
-                      </button>
-                      <input
-                        type='text'
-                        value={value}
-                        step='1'
-                        onChange={e => setValue(Number(e.target.value))}
-                      />
-                      <button onClick={handleIncrement}>+</button>
+              {products.map(product => (
+                <tr key={product.id}>
+                  <td>
+                    <Button
+                      className='d-flex justify-content-center'
+                      onClick={e => removeProduct(e, product.id)}
+                    >
+                      <FontAwesomeIcon icon={faCircleXmark} className={styles.mark} />
+                    </Button>
+                  </td>
+                  <td>
+                    <div className={styles.photo}>
+                      <img src={product.img} alt={product.name} />
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <div className={styles.total}>$5.00</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className='d-flex justify-content-center'>
-                    <FontAwesomeIcon icon={faCircleXmark} className={styles.mark} />
-                  </div>
-                </td>
-                <td>
-                  <div className={styles.photo}></div>
-                </td>
-                <td>
-                  <div className={styles.product}>ProductPlaceholder 2</div>
-                </td>
-                <td>
-                  <div className={styles.price}>$67.00</div>
-                </td>
-                <td>
-                  <div className={styles.quantity}>
-                    <div>
-                      <button onClick={handleDecrement} className={styles.leftButton}>
-                        -
-                      </button>
-                      <input
-                        type='text'
-                        value={value}
-                        step='1'
-                        onChange={e => setValue(Number(e.target.value))}
-                      />
-                      <button onClick={handleIncrement}>+</button>
+                  </td>
+                  <td>
+                    <div className={styles.product}>{product.name}</div>
+                  </td>
+                  <td>
+                    <div className={styles.price}>${product.price}</div>
+                  </td>
+                  <td>
+                    <div className={styles.quantity}>
+                      <div>
+                        <button onClick={handleDecrement} className={styles.leftButton}>
+                          -
+                        </button>
+                        <input
+                          type='text'
+                          value={value}
+                          step='1'
+                          onChange={e => setValue(Number(e.target.value))}
+                        />
+                        <button onClick={handleIncrement}>+</button>
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <div className={styles.total}>$67.00</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className='d-flex justify-content-center'>
-                    <FontAwesomeIcon icon={faCircleXmark} className={styles.mark} />
-                  </div>
-                </td>
-                <td>
-                  <div className={styles.photo}></div>
-                </td>
-                <td>
-                  <div className={styles.product}>ProductPlaceholder 3</div>
-                </td>
-                <td>
-                  <div className={styles.price}>$20.00</div>
-                </td>
-                <td>
-                  <div className={styles.quantity}>
-                    <div>
-                      <button onClick={handleDecrement} className={styles.leftButton}>
-                        -
-                      </button>
-                      <input
-                        type='text'
-                        value={value}
-                        step='1'
-                        onChange={e => setValue(Number(e.target.value))}
-                      />
-                      <button onClick={handleIncrement}>+</button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className={styles.total}>$20.00</div>
-                </td>
-              </tr>
+                  </td>
+                  <td>
+                    <div className={styles.total}>$5.00</div>
+                  </td>
+                </tr>
+              ))}
               <tr>
                 <td colSpan={3}>
                   <div className={styles.coupon}>
@@ -190,7 +149,9 @@ const Cart = () => {
                 <td colSpan={3}>
                   <div className={'d-flex justify-content-center '}>
                     <NavLink to='/'>
-                      <button className={styles.proceed}>proceed to checkout</button>
+                      <button onClick={removeAllProducts} className={styles.proceed}>
+                        proceed to checkout
+                      </button>
                     </NavLink>
                   </div>
                 </td>
