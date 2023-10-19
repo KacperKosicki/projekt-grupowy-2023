@@ -56,9 +56,7 @@ const Feedback = () => {
               <h3>Client Feedback</h3>
             </div>
             <div className={'col-auto ' + styles.dots}>
-              <ul>
-                <ul>{dots}</ul>
-              </ul>
+              <ul>{dots}</ul>
             </div>
           </div>
         </div>
