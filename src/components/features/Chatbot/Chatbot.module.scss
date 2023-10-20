@@ -23,6 +23,7 @@
     background-color: $background-chat;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     width: 300px;
+    
   }
 
   .chatbotHeader {
@@ -31,6 +32,7 @@
     padding: 10px;
     font-weight: bold;
     text-align: right;
+    overflow-wrap: break-word;
 
     .icon{
       padding-right: 10px;
@@ -43,6 +45,7 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    overflow-wrap: break-word;
   }
 
   .userMessage {
@@ -54,6 +57,7 @@
     align-self: flex-end;
     padding: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: lightgreen;
   }
 
   .botMessage {
