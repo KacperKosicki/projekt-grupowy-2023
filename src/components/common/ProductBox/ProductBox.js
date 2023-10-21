@@ -2,17 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductBox.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button/Button';
-import { toggleProductFavorite } from '../../../redux/productsRedux';
 import { addProduct } from '../../../redux/cartRedux';
 import Stars from '../Stars/Stars';
 import { useState } from 'react';
 import Popup from '../../views/Popup/Popup';
+import {
+  toggleProductFavorite,
+  toggleToCompare,
+  getComparedProducts,
+} from '../../../redux/productsRedux';
 
 const ProductBox = props => {
   const {
@@ -66,6 +70,16 @@ const ProductBox = props => {
   const addToCart = e => {
     e.preventDefault();
     dispatch(addProduct({ id, name, img, price }));
+  };
+
+  const comparedProducts = useSelector(getComparedProducts);
+
+  const handleToggleToCompare = e => {
+    e.preventDefault();
+
+    if (comparedProducts.length < 4 || comparison === true) {
+      dispatch(toggleToCompare(id));
+    }
   };
 
   return (
@@ -140,7 +154,8 @@ const ProductBox = props => {
           </Button>
           <Button
             variant='outline'
-            className={clsx(comparison && styles.icon_selected)}
+            onClick={handleToggleToCompare}
+            className={clsx(comparison && styles.icon_comp, styles.compHover)}
           >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>

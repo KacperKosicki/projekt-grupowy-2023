@@ -43,7 +43,7 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-2.jpg',
-      comparison: true,
+      comparison: false,
       isFavorite: false,
     },
     {
@@ -55,7 +55,7 @@ const initialState = {
       promo: 'sale',
       newFurniture: true,
       img: '/images/furniture/sofa-1.jpg',
-      comparison: true,
+      comparison: false,
       isFavorite: true,
     },
     {
