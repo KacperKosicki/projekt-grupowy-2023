@@ -1,0 +1,189 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  padding: $base-padding 0;
+.radio {
+  color: black;
+}
+
+}
+
+.productContainer {
+  border: 1px solid $product-border-color;
+  padding: 20px 10px;
+
+  .productGalery {
+    margin-right: 10px;
+
+    .productImage {
+      height: 494px;
+      background-color: #f4f5f7;
+
+    }
+
+    .gallery {
+      position: relative;
+
+      .ImageGallery {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+
+        .photo {
+          width: 89px;
+          height: 104px;
+          background-color: #f4f5f7;
+        }
+      }
+
+      .arrowsContainer {
+        position: absolute;
+        width: 100%;
+        top: 40%;
+
+        .arrows {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+  .productDescription {
+
+    .titleContainer {
+      display: flex;
+      justify-content: space-between;
+
+      .arrow {
+        margin: 0 5px;
+      }
+    }
+
+    .reviewContainer {
+      display: flex;
+
+      > p {
+        margin: 0 5px;
+        color: $text-grey;
+      }
+    }
+
+    .line {
+      margin: 20px 0;
+      border-bottom: 1px solid #c2c2c2;
+      position: relative;
+    }
+
+    .pricesContainer {
+      align-items: center;
+      display: flex;
+
+      .oldPrice {
+        font-size: 20px;
+        text-decoration: line-through;
+        color: #A5A5A5;
+        margin-right: 5px;
+      }
+
+      .price {
+        font-size: 20px;
+      }
+    }
+
+    .actionsContainer {
+      .actions > * {
+        margin: 0 4px;
+      }
+
+      .quantity {
+        display: flex;
+        margin-top: 20px;
+        font-weight: 500;
+
+        > p {
+          margin: auto 40px auto 0;
+          font-size: 14px;
+          color: $text-color;
+        }
+
+        .number {
+          width: 80px;
+          text-align: center;
+          text-justify: center;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+          transform: none;
+          margin: 0 4px;
+        }
+
+        .changeNumber {
+          transform: none;
+          font-weight: 500;
+          font-size: 14px;
+          margin: 0 4px;
+
+          &:hover {
+            background-color: #ffffff;
+            color: $primary;
+            border: 1px solid $primary;
+          }
+
+        }
+      }
+    }
+
+    .overviewContainer {
+      p {
+        color: $text-grey;
+      }
+    }
+
+    .detailsContainer {
+      .availability {
+        display: flex;
+
+        .title {
+          margin-right: 10px;
+          font-size: 14px;
+          color: $text-color;
+          font-weight: 500;
+        }
+
+        .value {
+          font-size: 14px;
+          color: $text-grey;
+        }
+      }
+    }
+
+    .socialMediaContainer {
+      > * {
+        margin: 0 4px;
+        color: $text-grey;
+      }
+
+      .facebook {
+        background-color: #3b5998;
+        color: $text-white;
+      }
+
+      .google {
+        color: #d62d20;
+      }
+
+      .twitter {
+        color: #4099ff;
+      }
+
+      .pinterest {
+        color: #c92228;
+      }
+
+      .linkedin {
+        color: #0077b5;
+      }
+    }
+  }
+
+}
