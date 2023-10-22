@@ -115,6 +115,17 @@
     background-color: $text-color;
     color: #ffffff;
   }
+
+  .icon_comp {
+    background-color: $background-product-search-bg;
+    color: $text-color;
+  }
+
+  .compHover:hover {
+    background-color: $background-product-search-bg;
+    color: $text-color;
+  }
+
 }
 
 .featuredRoot {

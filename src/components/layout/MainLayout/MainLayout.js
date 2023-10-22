@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import CompareStickyBar from '../../features/CompareStickyBar/CompareStickyBar';
 import { getScreenMode } from '../../../redux/screenModeRedux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -38,6 +39,7 @@ const MainLayout = ({ children }) => {
     <div>
       <Header />
       {children}
+      <CompareStickyBar />
       <Footer />
     </div>
   );
