@@ -17,6 +17,20 @@
     background-color: $primary;
   }
 
+  .alert {
+    margin: 5px 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background-color: $yellow;
+    border-color: white;
+    color: white;
+    font-size: 15px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
   .photo {
     position: relative;
     padding: 10px;
@@ -179,4 +193,4 @@
       }
     }
   }
-  }
+}

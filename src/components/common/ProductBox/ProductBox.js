@@ -63,13 +63,22 @@ const ProductBox = props => {
     });
   };
 
+  const [showAlert, setShowAlert] = useState(false);
+
   const addToCart = e => {
     e.preventDefault();
     dispatch(addProduct({ id, name, img, price }));
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000);
   };
 
   return (
     <div className={rootClassName}>
+      {showAlert && (
+        <div className={`alert alert-success ${styles.alert}`} role='alert'>
+          Produkt <span>{name}</span> został pomyślnie dodany do koszyka.
+        </div>
+      )}
       <div className={styles.photo}>
         {promo && <div className={styles.sale}>{promo}</div>}
         <Link to={`/product/${id}`}>
