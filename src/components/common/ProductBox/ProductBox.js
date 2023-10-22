@@ -19,7 +19,6 @@ const ProductBox = props => {
     name,
     price,
     promo,
-    isFavorite,
     id,
     stars,
     userStars,
@@ -31,6 +30,13 @@ const ProductBox = props => {
   } = props;
 
   const rootClassName = isFeatured ? styles.featuredRoot : styles.root;
+
+  const [isFavorite, setIsFavorite] = useState(() => {
+    const isFavoriteLocalStorage = localStorage.getItem(`isFavorite_${id}`);
+    return isFavoriteLocalStorage === null
+      ? props.isFavorite
+      : isFavoriteLocalStorage === 'true';
+  });
 
   const [show, setShow] = useState(false);
 
@@ -48,6 +54,13 @@ const ProductBox = props => {
   const toggleFavorite = e => {
     e.preventDefault();
     dispatch(toggleProductFavorite(id));
+    setIsFavorite(prevIsFavorite => {
+      const newIsFavorite = !prevIsFavorite;
+
+      localStorage.setItem(`isFavorite_${id}`, newIsFavorite);
+
+      return newIsFavorite;
+    });
   };
 
   const addToCart = e => {
