@@ -24,21 +24,32 @@
     }
   }
 
-  .topOptions ul li {
-    margin-right: 1.5rem;
+    .topOptions ul {
+      display: flex;
+      justify-content: flex-start;
 
-    .icon {
-      margin-left: 5px;
+      li {
+        margin-right: 1.5rem;
+
+        .icon {
+          margin-left: 5px;
+        }
+      }
     }
-  }
 
-  .topMenu ul li {
-    margin-left: 1.5rem;
+    .topMenu ul {
+      display: flex;
+      justify-content: flex-end;
 
-    .icon {
-      margin-right: 5px;
+      li {
+        margin-left: 1.5rem;
+
+        .icon {
+          margin-right: 5px;
+        }
+      }
     }
-  }
+
 }
 
 /* MEDIA */
