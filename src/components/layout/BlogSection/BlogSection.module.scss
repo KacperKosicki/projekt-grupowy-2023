@@ -116,3 +116,11 @@
     }
   }
 }
+
+/* MEDIA */
+
+@media (max-width: 992px) {
+  p {
+    font-size: 10px; /* Zmniejsz szerokość obrazków na mniejszych ekranach */
+  }
+}
