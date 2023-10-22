@@ -48,6 +48,13 @@
     overflow-wrap: break-word;
   }
 
+  .chatbotTitle {
+    margin: 0; /* Usuwa domyślny margines dla nagłówka h1 */
+    margin-right: 10px; /* Dodaje odstęp między nagłówkiem a ikonami */
+    text-align: left;
+    font-size: 14px;
+  }
+
   .userMessage {
     text-align: right;
     margin-bottom: 10px;
@@ -71,6 +78,12 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 
+  .messageLabel {
+    font-size: 12px;
+    color: gray; /* lub inny kolor, który chcesz użyć dla etykiety */
+    margin-bottom: 5px; /* lub inny margines, który chcesz zastosować między etykietą a wiadomością */
+  }
+
   .chatbotInput {
     padding: 10px;
     display: flex;
@@ -85,7 +98,7 @@
     }
 
     input::placeholder {
-      color: $text-white;
+      color: $yellow;
     }
 
     input:focus {
