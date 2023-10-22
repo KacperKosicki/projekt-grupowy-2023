@@ -69,4 +69,17 @@
   }
 }
 
+@media (max-width: 991px) {
+  .featuredProduct {
+    width: 60%;
+  }
+  .featuredProduct_inner{
+    padding-left: 20px;
+  }
+}
 
+@media (max-width: 767px) {
+  .featuredProduct {
+    width: 100%;
+  }
+}

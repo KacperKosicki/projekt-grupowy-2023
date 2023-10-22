@@ -55,3 +55,15 @@
     }
   }
 }
+
+@media (max-width: 991px) {
+  .featuredCard {
+    width: 40%;
+  }
+}
+
+@media (max-width: 767px) {
+  .featuredCard {
+    display: none;
+  }
+}
