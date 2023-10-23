@@ -1,0 +1,8 @@
+@import "../../../styles/settings.scss";
+
+
+.product-box-container {
+    width: 33.33%; /* 3 items per row */
+    box-sizing: border-box;
+    padding: 0 15px; /* Add some spacing between items */
+}
