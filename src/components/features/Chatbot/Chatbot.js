@@ -44,8 +44,6 @@ const Chatbot = () => {
 
   const handleUserInput = () => {
     if (inputText.trim() !== '') {
-      console.log('Wiadomość od użytkownika:', inputText);
-
       const userMessage = { text: inputText, isUser: true }; // Tworzymy obiekt reprezentujący wiadomość użytkownika
       const newMessages = [...messages, userMessage]; // Tworzymy nową tablicę wiadomości, dodając wiadomość użytkownika
 
@@ -79,7 +77,6 @@ const Chatbot = () => {
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    console.log('Formularz został przesłany');
     handleUserInput();
   };
 
