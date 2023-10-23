@@ -164,7 +164,7 @@ const ProductBox = props => {
           <Button
             variant='outline'
             onClick={handleToggleToCompare}
-            className={clsx(comparison && styles.icon_comp, styles.compHover)}
+            className={clsx(comparison && styles.icon_selected)}
           >
             <FontAwesomeIcon icon={faExchangeAlt}>Add to compare</FontAwesomeIcon>
           </Button>
