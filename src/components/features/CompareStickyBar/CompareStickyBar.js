@@ -24,6 +24,10 @@ const CompareStickyBar = () => {
     dispatch(removeFromComparison(id));
   };
 
+  if (comparedProducts.length === 0) {
+    return null;
+  }
+
   return (
     <div className={styles.compareStickyBar}>
       {comparedProducts.map(product => (
@@ -38,7 +42,7 @@ const CompareStickyBar = () => {
       ))}
       <Button variant='small' disabled={comparedProducts.length === 0}>
         <FontAwesomeIcon icon={faExchangeAlt} />
-        Compare
+        &nbsp; Compare
       </Button>
     </div>
   );
